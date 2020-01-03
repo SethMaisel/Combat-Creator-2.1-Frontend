@@ -33,7 +33,7 @@ class SequenceForm extends Component {
     }
     
     render () {
-    console.log("sequenceForm", this.props)
+    
     return (
         
           <form onSubmit={this.handleSubmit}>

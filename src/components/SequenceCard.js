@@ -27,6 +27,7 @@ function SequenceCard(props) {
                 {movement}
                 {technique}
                 {line}
+                {/* <button>Delete</button> */}
 
             </div>
 

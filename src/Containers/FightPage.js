@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import FightCollection from "./FightCollection";
-import FightCard from "./FightCard";
+import AddFightForm from "../components/AddFightForm"
 // import FightSequences from "./FightSequences";
-import '../App.css';
+// import RemoveFightButton from "../components/RemoveFightButton";
+// import '../App.css';
+import '../styling/FightPage.css'
 
 const base_url = 'http://localhost:3000/'
 const handleResponse = (response => response.json())
@@ -30,11 +32,11 @@ class FightPage extends Component {
     createHeader = () => {
       return(
         <header className="fight-page" >
+          <h1 className="fight-page-heading">En Guard!</h1>
           <img 
             src='https://www.fortezafitness.com/wp/wp-content/uploads/2012/06/alfieri37.jpg' alt='Combat Creator: A Fight Choreography Resource'
             
           />
-          <h1 className="fight-page-heading">En Guard!</h1>
           <audio 
             className='audio'
             ref='audio_tag' 
@@ -45,10 +47,10 @@ class FightPage extends Component {
       )
     }
 
-    fetchCall(url, method, body) {
-      const headers = { "Content-Type": "application/json"};
-      return fetch( url, { method, headers, body } );
-    }
+    // fetchCall(url, method, body) {
+    //   const headers = { "Content-Type": "application/json"};
+    //   return fetch( url, { method, headers, body } );
+    // }
 
     getFights = () => {
       return fetch(`${base_url}fights`) 
@@ -104,10 +106,66 @@ class FightPage extends Component {
     //   });
     // };
 
+    createNewFight = name => {
+      console.log('fightpagename', name)
+      fetch(`${base_url}fights`, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({"name": name})
+      }).then(handleResponse)
+      
+      // .then(name => {
+      //   this.setState({
+      //     fights: [...this.state.fights, name]
+      //   })
+      // })
+      // .then(fights => {
+      // const updatedFights = this.findFight(fights, name);
+      // const oldFights = this.filterFights(fights, name);
+      // this.updatedFightpush(name);
+
+      
+      // this.setState({ fights: [...oldFights, updatedFights] });
+
+      // }
+
+    }
+
+    // createNewSequence = name => {
+    //   console.log('fightpagename', name)
+    //   fetch(`${base_url}fights`, {
+    //     method: 'POST',
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({"name": name})
+    //   }).then(handleResponse)
+
+    removeFight = selectedFight => {
+      const id = selectedFight.id
+  
+      const fights = this.state.fights.filter(fight => {
+        return fight !== selectedFight
+      })
+  
+      this.setState({ fights })
+      fetch(`${base_url}fights/${id}`, {
+        method: "DELETE"
+      })
+      .then(handleResponse)
+    }
+
     render() {
-      console.log("FightPageState", this.state)
+      
         return (
+            
             <div>
+              {this.createHeader()}
+              <AddFightForm
+              createNewFight={this.createNewFight}
+              />
               <h1>Your Fights</h1>
               <FightCollection 
                 fights={this.state.fights}
@@ -116,7 +174,13 @@ class FightPage extends Component {
                 movements={this.state.movements}
                 techniques={this.state.techniques}
                 lines={this.state.lines}
+                removeFight={this.removeFight}
                 />
+              
+              {/* <RemoveFightButton
+              removeFight={this.removeFight}
+              /> */}
+              
 
               {/* <h2>Fight Sequences</h2> */}
               {/* <FightSequences 
@@ -125,11 +189,11 @@ class FightPage extends Component {
         );
     }
 
-    findFight(fights, sequence) {
-      return fights.find(fight => {
-        return fight.id === sequence.fight_id;
-      });
-    }
+    // findFight(fights, name) {
+    //   return fights.find(fight => {
+    //     return fight.id === sequence.fight_id;
+    //   });
+    // }
 
     // filterFights(fights, sequence) {
     //   return fights.filter(fight => {

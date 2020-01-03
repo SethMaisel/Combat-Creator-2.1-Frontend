@@ -1,8 +1,19 @@
 import React from "react";
 import SequenceForm from "./SequenceForm"
 
-function SequenceCard(fightData) {
-    console.log("sequenceCardFight", fightData)
+function SequenceCard(props) {
+    const {fight, 
+        character, 
+        weapon, 
+        movement, 
+        technique, 
+        line, 
+        weapons, 
+        movements, 
+        techniques, 
+        lines
+        } = props
+    // console.log("sequenceCardFight", fightData)
     
 
 
@@ -10,17 +21,22 @@ function SequenceCard(fightData) {
     return (
         <div className="sequenceCard">
             <div className="content">
-                {fightData.name}
-                {fightData.character}
-                {fightData.weapon}
-                {fightData.movement}
-                {fightData.technique}
-                {fightData.line}
+                {fight}
+                {character}
+                {weapon}
+                {movement}
+                {technique}
+                {line}
 
             </div>
 
             <div className="sequenceForms">
-                <SequenceForm />
+                <SequenceForm 
+                weapons={weapons}
+                movements={movements}
+                techniques={techniques}
+                lines={lines}
+                />
 
 
             </div>

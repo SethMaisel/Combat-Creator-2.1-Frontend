@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import FightCollection from "./FightCollection";
+import FightCard from "./FightCard";
 // import FightSequences from "./FightSequences";
 import '../App.css';
 
 const base_url = 'http://localhost:3000/'
 const handleResponse = (response => response.json())
+
 
 class FightPage extends Component {
 
@@ -24,6 +26,30 @@ class FightPage extends Component {
       this.getLines()
       
     }
+
+    createHeader = () => {
+      return(
+        <header className="fight-page" >
+          <img 
+            src='https://www.fortezafitness.com/wp/wp-content/uploads/2012/06/alfieri37.jpg' alt='Combat Creator: A Fight Choreography Resource'
+            
+          />
+          <h1 className="fight-page-heading">En Guard!</h1>
+          <audio 
+            className='audio'
+            ref='audio_tag' 
+            crossOrigin src='http://cs.slimi.lt/cstrike/sound/yellow/deploy1.wav' 
+            controls autoPlay
+          />
+        </header>
+      )
+    }
+
+    fetchCall(url, method, body) {
+      const headers = { "Content-Type": "application/json"};
+      return fetch( url, { method, headers, body } );
+    }
+
     getFights = () => {
       return fetch(`${base_url}fights`) 
           .then(handleResponse)
@@ -50,6 +76,34 @@ class FightPage extends Component {
       .then(lines => this.setState({lines}))
     }
 
+    // createSequence = (sequence) => {
+    //   const { fights } = this.state;
+  
+    //   const updatedFights = findFight(fights, sequence);
+    //   const oldFights = filterFights(fights, sequence);
+    //   updatedFight.sequence.push(sequence);
+      
+    //   this.setState({ fights: [...oldFights, updatedFights] });
+  
+    //   const body = JSON.stringify(rating);
+    //   fetchCall(`${base_url}`, "POST", body);
+    // };
+
+    // createFights = () => {
+    //   const { fights } = this.state;
+    //   return fights.map(fight => {
+    //     return (
+    //       <FightCard 
+    //         key={ fight.id }
+    //         fight={ fight }
+    //         createSequence={ this.createSequence }
+            // updateSequence={ this.updateSequence }
+            // deleteSequence={ this.deleteSequence }
+    //       />
+    //     );
+    //   });
+    // };
+
     render() {
       console.log("FightPageState", this.state)
         return (
@@ -70,6 +124,18 @@ class FightPage extends Component {
             </div>
         );
     }
-}
+
+    findFight(fights, sequence) {
+      return fights.find(fight => {
+        return fight.id === sequence.fight_id;
+      });
+    }
+
+    // filterFights(fights, sequence) {
+    //   return fights.filter(fight => {
+    //     return fight.id !== sequence.fight_id;
+    //   });
+    // }
+};
 
 export default FightPage;

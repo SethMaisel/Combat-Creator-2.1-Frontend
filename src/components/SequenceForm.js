@@ -33,7 +33,7 @@ class SequenceForm extends Component {
     }
     
     render () {
-    console.log(this.state)
+    console.log("sequenceForm", this.props)
     return (
         
           <form onSubmit={this.handleSubmit}>
@@ -46,38 +46,57 @@ class SequenceForm extends Component {
               value={this.state.character}
               />  
              <select
-                placeholder='Weapon' 
-                name="weapon" 
+                placeholder='Select Weapon' 
+                name="weapons" 
                 required 
                 onChange={this.setValue}
                 value={this.state.weapon}
              >
-                 <option value="weapon">Stabby</option>
+                 <option>Select Weapon</option>
+                    {this.props.weapons.map(weapon => {
+                        return <option value="weapon">{weapon.name}</option>})
+                    }
+                    
             </select>
-            <input 
-                type='text' 
-                placeholder='Movement' 
-                name="movement" 
+            <select
+                placeholder='Select Movement' 
+                name="movements" 
                 required 
                 onChange={this.setValue}
                 value={this.state.movement}
-            />  
-            <input 
-                type='text' 
-                placeholder='Technique' 
-                name="technique" 
+             >
+                 <option>Select Movement</option>
+                    {this.props.movements.map(movement => {
+                        return <option value="movement">{movement.name}</option>})
+                    }
+                    
+            </select>
+            <select
+                placeholder='Select Technique' 
+                name="techniques" 
                 required 
                 onChange={this.setValue}
                 value={this.state.technique}
-            />
-            <input 
-                type='text' 
-                placeholder='Line' 
-                name="line" 
+             >
+                 <option>Select Technique</option>
+                    {this.props.techniques.map(technique => {
+                        return <option value="technique">{technique.name}</option>})
+                    }
+                    
+            </select>
+            <select
+                placeholder='Select Line' 
+                name="Line" 
                 required 
                 onChange={this.setValue}
                 value={this.state.line}
-            />      
+             >
+                 <option>Select Line</option>
+                    {this.props.lines.map(line => {
+                        return <option value="line">{line.line}</option>})
+                    }
+                    
+            </select>
             <input 
             type='submit' 
             placeholder='Create Sequence' 

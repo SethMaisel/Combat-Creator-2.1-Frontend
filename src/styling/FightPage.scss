@@ -1,0 +1,31 @@
+@import 'colors';
+@import 'reset';
+@import 'scaling';
+@import 'typography';
+
+.fight-page{
+    background-color: $black;
+    opacity: 90%;
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+    font-family: 'Baveuse';
+    color: $white;
+    align-content: space-between;
+}
+
+.fight-page > img{
+    width: 100%;
+    height: auto;
+}
+
+.fight-page-heading{
+    font-size: 60pt;
+    align-self: center;
+}
+
+.audio{
+    background-color: $black;
+    align-self: center;
+    margin: 10rem;
+}

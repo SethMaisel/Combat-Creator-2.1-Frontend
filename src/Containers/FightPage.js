@@ -28,7 +28,7 @@ class FightPage extends Component {
       this.getLines()
       
     }
-
+    
     createHeader = () => {
       return(
         <header className="fight-page" >
@@ -38,14 +38,17 @@ class FightPage extends Component {
             
           />
           <audio 
+            
             className='audio'
             ref='audio_tag' 
-            crossOrigin src='http://cs.slimi.lt/cstrike/sound/yellow/deploy1.wav' 
+            crossOrigin src='http://cs.slimi.lt/cstrike/sound/yellow/deploy1.wav'
             controls autoPlay
+            style={{display: "none"}}
           />
         </header>
       )
     }
+  
 
     // fetchCall(url, method, body) {
     //   const headers = { "Content-Type": "application/json"};
@@ -175,6 +178,7 @@ class FightPage extends Component {
                 techniques={this.state.techniques}
                 lines={this.state.lines}
                 removeFight={this.removeFight}
+                
                 />
               
               {/* <RemoveFightButton

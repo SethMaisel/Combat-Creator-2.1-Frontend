@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import CreateCharacterForm from './CreateCharacterForm';
+
 
 const base_url = 'http://localhost:3000/'
 const handleResponse = (response => response.json())
@@ -7,6 +9,7 @@ class SequenceForm extends Component {
 
     state = {
         character: "",
+        character_id: null,
         weapon_id: null,
         movement_id: null,
         technique_id: null,
@@ -26,13 +29,15 @@ class SequenceForm extends Component {
     setValue = event => {
         console.log("characters", this.props.characters)
         this.setState({ [event.target.name]: event.target.value })
-
+        // this.doesCharacterExist(this.state.character)
     }
 
     doesCharacterExist = characterName => {
-        const characterId = this.props.characters.find(character => character["name"].toLowerCase() == characterName.toLowerCase()).id
-        return (characterId)
+        console.log("characterName", characterName)
+        console.log("charactersArray", this.props.characters.filter(character => character["name"]==characterName))
+        const characterId = this.props.characters.find(character => character["name"].toLowerCase() == characterName.toLowerCase())
         console.log("characterid", characterId)
+        return characterId
     }
 
     createNewCharacter = characterName => {
@@ -66,17 +71,18 @@ class SequenceForm extends Component {
     }
 
     render() {
-        console.log("sequenceState", this.state)
+        console.log("sequenceStateCharacter", this.state.character)
         return (
 
             <form onSubmit={this.handleSubmit}>
                 <input
+                    
                     type='text'
                     placeholder='Character'
                     name="character"
                     required
                     onChange={this.setValue}
-                    // id={this.state.character.id}
+                    id={this.state.character.id}
                     value={this.state.character.name}
                 />
                 <select

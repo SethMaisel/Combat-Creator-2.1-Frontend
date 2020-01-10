@@ -7,7 +7,7 @@ const FightCard = ({ sequences, fight, characters, weapons, movements, technique
            return sequences.map(sequence => {
         
                 return <SequenceCard 
-                    key={sequence.id}
+                    sequence_id={sequence.id}
                     fight={fight}
                     character={sequence.character.name}
                     weapon={sequence.weapon.name}

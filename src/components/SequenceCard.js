@@ -1,25 +1,13 @@
 import React from "react";
 import SequenceForm from "./SequenceForm"
 
-function SequenceCard(props) {
-    const { fight,
-        character,
-        weapon,
-        movement,
-        technique,
-        line,
-        characters,
-        weapons,
-        movements,
-        techniques,
-        lines,
-        getCharacters
-    } = props
-    // console.log("sequenceCardFight", fightData)
-
-
+const SequenceCard = ({ sequence_id, fight, character, weapon, movement, technique, line, characters, weapons, movements, techniques, lines, getCharacters}) => {
     
-
+    // console.log("sequenceCardFight", fightData)
+    
+    
+    
+    
     return (
         <div className="sequenceCard">
             <div className="content">
@@ -33,6 +21,7 @@ function SequenceCard(props) {
 
             <div className="sequenceForms">
                 <SequenceForm
+                    sequence_id={sequence_id}
                     fight_id={fight.id}
                     characters={characters}
                     weapons={weapons}
@@ -40,15 +29,16 @@ function SequenceCard(props) {
                     techniques={techniques}
                     lines={lines}
                     getCharacters={getCharacters}
-
-                />
+                    
+                    />
 
 
             </div>
         </div>
     )
-
+    
 };
+
 
 export default SequenceCard;
 

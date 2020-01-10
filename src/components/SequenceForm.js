@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CreateCharacterForm from './CreateCharacterForm';
+// import CreateCharacterForm from './CreateCharacterForm';
 
 
 const base_url = 'http://localhost:3000/'
@@ -32,33 +32,16 @@ class SequenceForm extends Component {
         // this.doesCharacterExist(this.state.character)
     }
 
-    doesCharacterExist = characterName => {
-        console.log("characterName", characterName)
-        console.log("charactersArray", this.props.characters.filter(character => character["name"]==characterName))
-        const characterId = this.props.characters.find(character => character["name"].toLowerCase() == characterName.toLowerCase())
-        console.log("characterid", characterId)
-        return characterId
-    }
 
-    createNewCharacter = characterName => {
-        fetch(`${base_url}characters`, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(characterName)
-        }).then(handleResponse)
-        .then(this.props.getCharacters())
-        .then(this.doesCharacterExist(characterName))
-        }
+
+
 
     createNewSequence = (fight_id, sequence) => {
-        let characterId = this.doesCharacterExist(sequence.character) 
-        characterId = characterId ? characterId : this.createNewCharacter(sequence.character)
+        // let characterId = this.doesCharacterExist(sequence.character)
+        // characterId = characterId ? characterId : this.createNewCharacter(sequence.character)
         const newSequence = { fight_id, ...sequence }
         console.log("newSequence", newSequence)
-        console.log("characterExist", this.doesCharacterExist(newSequence.character))
-        
+
 
         fetch(`${base_url}sequences`, {
             method: 'POST',
@@ -73,18 +56,8 @@ class SequenceForm extends Component {
     render() {
         console.log("sequenceStateCharacter", this.state.character)
         return (
+            <div>
 
-            <form onSubmit={this.handleSubmit}>
-                <input
-                    
-                    type='text'
-                    placeholder='Character'
-                    name="character"
-                    required
-                    onChange={this.setValue}
-                    id={this.state.character.id}
-                    value={this.state.character.name}
-                />
                 <select
                     placeholder='Select Weapon'
                     name="weapon_id"
@@ -144,8 +117,10 @@ class SequenceForm extends Component {
                 <input
                     type='submit'
                     placeholder='Create Sequence'
-                    required />
-            </form>
+                    required
+                />
+            </div>
+
         )
     }
 };

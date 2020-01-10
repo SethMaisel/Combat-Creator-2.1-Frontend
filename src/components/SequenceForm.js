@@ -1,107 +1,145 @@
 import React, { Component } from "react";
 
+const base_url = 'http://localhost:3000/'
+const handleResponse = (response => response.json())
+
 class SequenceForm extends Component {
 
     state = {
         character: "",
-        weapon: "",
-        movement: "",
-        technique: "",
-        line: ""
+        weapon_id: null,
+        movement_id: null,
+        technique_id: null,
+        line_id: null
+
     }
 
 
-    
-    
+
+
     handleSubmit = event => {
         event.preventDefault()
-        // const formData = new FormData(event.target)
-        //   this.props.submitHandler({
-        //       character: formData.get("character"),
-        //       weapon: formData.get("weapon"),
-        //       movement: formData.get("movement"),
-        //       technique: formData.get("technique"),
-        //       line: formData.get("line")
-        //   })
-        //   event.target.reset()
+        this.createNewSequence(this.props.fight_id, this.state)
+
     }
-    
+
     setValue = event => {
-        // console.log("setValue", event.target.name)
-        this.setState({[event.target.name]: event.target.value})
-            
+        console.log("characters", this.props.characters)
+        this.setState({ [event.target.name]: event.target.value })
+
     }
-    
-    render () {
-    
-    return (
+
+    doesCharacterExist = characterName => {
+        const characterId = this.props.characters.find(character => character["name"].toLowerCase() == characterName.toLowerCase()).id
+        return (characterId)
+        console.log("characterid", characterId)
+    }
+
+    createNewCharacter = characterName => {
+        fetch(`${base_url}characters`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(characterName)
+        }).then(handleResponse)
+        .then(this.props.getCharacters())
+        .then(this.doesCharacterExist(characterName))
+        }
+
+    createNewSequence = (fight_id, sequence) => {
+        let characterId = this.doesCharacterExist(sequence.character) 
+        characterId = characterId ? characterId : this.createNewCharacter(sequence.character)
+        const newSequence = { fight_id, ...sequence }
+        console.log("newSequence", newSequence)
+        console.log("characterExist", this.doesCharacterExist(newSequence.character))
         
-          <form onSubmit={this.handleSubmit}>
-            <input 
-              type='text' 
-              placeholder='Character' 
-              name="character" 
-              required 
-              onChange={this.setValue}
-              value={this.state.character}
-              />  
-             <select
-                placeholder='Select Weapon' 
-                name="weapons" 
-                required 
-                onChange={this.setValue}
-                value={this.state.weapon}
-             >
-                 <option>Select Weapon</option>
+
+        fetch(`${base_url}sequences`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newSequence)
+        }).then(handleResponse)
+            .then(console.log)
+    }
+
+    render() {
+        console.log("sequenceState", this.state)
+        return (
+
+            <form onSubmit={this.handleSubmit}>
+                <input
+                    type='text'
+                    placeholder='Character'
+                    name="character"
+                    required
+                    onChange={this.setValue}
+                    // id={this.state.character.id}
+                    value={this.state.character.name}
+                />
+                <select
+                    placeholder='Select Weapon'
+                    name="weapon_id"
+                    required
+                    onChange={this.setValue}
+                    value={this.state.weapon}
+                >
+                    <option>Select Weapon</option>
                     {this.props.weapons.map(weapon => {
-                        return <option value="weapon">{weapon.name}</option>})
+                        return <option value={weapon.id}>{weapon.name}</option>
+                    })
                     }
-                    
-            </select>
-            <select
-                placeholder='Select Movement' 
-                name="movements" 
-                required 
-                onChange={this.setValue}
-                value={this.state.movement}
-             >
-                 <option>Select Movement</option>
+
+                </select>
+                <select
+                    placeholder='Select Movement'
+                    name="movement_id"
+                    required
+                    onChange={this.setValue}
+                    value={this.state.movement}
+                >
+                    <option>Select Movement</option>
                     {this.props.movements.map(movement => {
-                        return <option value="movement">{movement.name}</option>})
+                        return <option value={movement.id}>{movement.name}</option>
+                    })
                     }
-                    
-            </select>
-            <select
-                placeholder='Select Technique' 
-                name="techniques" 
-                required 
-                onChange={this.setValue}
-                value={this.state.technique}
-             >
-                 <option>Select Technique</option>
+
+                </select>
+                <select
+                    placeholder='Select Technique'
+                    name="technique_id"
+                    required
+                    onChange={this.setValue}
+                    value={this.state.technique}
+                >
+                    <option>Select Technique</option>
                     {this.props.techniques.map(technique => {
-                        return <option value="technique">{technique.name}</option>})
+                        return <option value={technique.id}>{technique.name}</option>
+                    })
                     }
-                    
-            </select>
-            <select
-                placeholder='Select Line' 
-                name="Line" 
-                required 
-                onChange={this.setValue}
-                value={this.state.line}
-             >
-                 <option>Select Line</option>
+
+                </select>
+                <select
+                    placeholder='Select Line'
+                    name="line_id"
+                    required
+                    onChange={this.setValue}
+                    value={this.state.line}
+                >
+                    <option>Select Line</option>
                     {this.props.lines.map(line => {
-                        return <option value="line">{line.line}</option>})
+                        return <option value={line.id}>{line.line}</option>
+                    })
                     }
-                    
-            </select>
-            <input 
-            type='submit' 
-            placeholder='Create Sequence' 
-            required />  
-          </form>
+
+                </select>
+                <input
+                    type='submit'
+                    placeholder='Create Sequence'
+                    required />
+            </form>
         )
     }
 };

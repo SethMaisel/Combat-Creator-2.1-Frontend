@@ -4,7 +4,7 @@ import CreateCharacterForm from "./CreateCharacterForm"
 
 const SequenceCard = ({ sequence_id, fight, character, weapon, movement, technique, line, characters, weapons, movements, techniques, lines, getCharacters }) => {
 
-    // console.log("sequenceCardFight", fightData)
+    // console.log("sequenceCardFight", sequence_id)
 
 
 
@@ -12,11 +12,7 @@ const SequenceCard = ({ sequence_id, fight, character, weapon, movement, techniq
     return (
         <div className="sequenceCard">
             <div className="content">
-                <h1>{fight.name}:</h1>
                 <p>{character}: {weapon}--{movement} with {technique} to {line} </p>
-                <button>Update</button>
-                <button>Delete</button>
-
 
             </div>
 

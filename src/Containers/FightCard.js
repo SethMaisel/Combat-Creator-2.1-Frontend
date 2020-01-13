@@ -30,7 +30,6 @@ const FightCard = ({ fight, selectFight, selectedFight, backToFights, characters
     }
 
 
-
     return (
         <div>
 

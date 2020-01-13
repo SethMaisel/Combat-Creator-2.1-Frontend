@@ -207,6 +207,9 @@ class FightPage extends Component {
         <AddFightForm
           createNewFight={this.createNewFight}
         />
+        <AddFightForm
+          createNewFight={this.createNewFight}
+        />
 
         {/* <RemoveFightButton
               removeFight={this.removeFight}

@@ -174,9 +174,6 @@ class FightPage extends Component {
 
       <div>
         {this.createHeader()}
-        <AddFightForm
-          createNewFight={this.createNewFight}
-        />
         <h1>Your Fights</h1>
         <FightCollection
           fights={this.state.fights}
@@ -188,6 +185,9 @@ class FightPage extends Component {
           removeFight={this.removeFight}
           getCharacters={this.getCharacters}
 
+        />
+        <AddFightForm
+          createNewFight={this.createNewFight}
         />
 
         {/* <RemoveFightButton

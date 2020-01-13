@@ -31,7 +31,7 @@ const FightCard = ({ sequences, fight, characters, weapons, movements, technique
     }
 
         return (
-            <div className="sequenceData">
+            <div className="fightData">
                 {fight.name}
                 <button
                 onClick={handleClick}>

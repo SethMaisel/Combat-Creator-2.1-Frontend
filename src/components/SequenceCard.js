@@ -1,5 +1,5 @@
 import React from "react";
-import SequenceForm from "./SequenceForm"
+// import SequenceForm from "./SequenceForm"
 import CreateCharacterForm from "./CreateCharacterForm"
 
 const SequenceCard = ({ sequence_id, fight, character, weapon, movement, technique, line, characters, weapons, movements, techniques, lines, getCharacters }) => {
@@ -20,28 +20,23 @@ const SequenceCard = ({ sequence_id, fight, character, weapon, movement, techniq
 
             </div>
 
-            <div className="sequenceForms">
+            {/* <div className="sequenceForms"> */}
             <div>
-            <CreateCharacterForm
-                
-                characters={characters}
-                // getCharacters={getCharacters}
+                <CreateCharacterForm
 
-            />
-            </div>
-                <SequenceForm
+                    characters={characters}
                     sequence_id={sequence_id}
                     fight_id={fight.id}
-                    characters={characters}
                     weapons={weapons}
                     movements={movements}
                     techniques={techniques}
                     lines={lines}
                     getCharacters={getCharacters}
-                    // style={{ display: "none" }}
+                // getCharacters={getCharacters}
 
                 />
             </div>
+
 
 
         </div>

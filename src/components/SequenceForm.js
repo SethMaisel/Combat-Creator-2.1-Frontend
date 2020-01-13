@@ -57,6 +57,9 @@ class SequenceForm extends Component {
         console.log("sequenceStateCharacter", this.state.character)
         return (
             <div>
+                <div characterName="character">
+                    {this.chracter}
+                </div>
 
                 <select
                     placeholder='Select Weapon'

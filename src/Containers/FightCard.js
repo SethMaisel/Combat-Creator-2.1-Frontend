@@ -1,12 +1,15 @@
 import React from "react";
 import SequenceCard from "../components/SequenceCard"
 
-const FightCard = ({ sequences, fight, characters, weapons, movements, techniques, lines, removeFight, getCharacters}) => {
+const FightCard = ({ fight, selectFight, selectedFight, backToFights, characters, getCharacters, weapons, movements, techniques, lines }) => {
+
+
     const sequenceHandler = () => {
-        if(sequences){
-           return sequences.map(sequence => {
-        
-                return <SequenceCard 
+        if (fight.sequences.length > 0) {
+            return fight.sequences.map(sequence => {
+
+                return <SequenceCard
+                    key={sequence.id}
                     sequence_id={sequence.id}
                     fight={fight}
                     character={sequence.character.name}
@@ -20,27 +23,37 @@ const FightCard = ({ sequences, fight, characters, weapons, movements, technique
                     techniques={techniques}
                     lines={lines}
                     getCharacters={getCharacters}
-                    />
+                />
+
             })
         }
     }
-    
-    const handleClick = () => {
-        console.log("handleclick", fight)
-        removeFight(fight)
-    }
 
-        return (
-            <div className="fightData">
+
+    return (
+        <div>
+
+            <div className="fightName" onClick={() =>
+                selectFight(fight)}>
                 {fight.name}
-                <button
-                onClick={handleClick}>
-                Delete
-                </button>
-                {sequenceHandler()}
             </div>
-        )
-    
+            {selectedFight && fight.id === selectedFight.id &&
+                <div>
+                    <div className="sequencesContainer">
+                        {sequenceHandler()}
+                    </div>
+
+                    <button
+                        className="goBackButton"
+                        onClick={backToFights}
+                    >
+                        Go Back
+            </button>
+                </div>
+            }
+        </div>
+    )
+
 };
 
 export default FightCard;

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import FightCollection from "./FightCollection";
+// import FightCard from './FightCard';
 import AddFightForm from "../components/AddFightForm"
+
 // import FightSequences from "./FightSequences";
 // import RemoveFightButton from "../components/RemoveFightButton";
 // import '../App.css';
@@ -14,6 +16,7 @@ class FightPage extends Component {
 
   state = {
     fights: [],
+    selectedFight: null,
     characters: [],
     weapons: [],
     movements: [],
@@ -24,12 +27,22 @@ class FightPage extends Component {
   componentDidMount() {
     this.getFights()
     this.getCharacters()
-    this.getWeapons()
-    this.getMovements()
-    this.getTechniques()
-    this.getLines()
+    // this.getWeapons()
+    // this.getMovements()
+    // this.getTechniques()
+    // this.getLines()
 
   }
+
+  selectFight = (fight) => {
+    this.setState({ selectedFight: fight })
+  }
+
+  backToFights = () => {
+    this.setState({ selectedFight: null })
+  }
+
+
 
   createHeader = () => {
     return (
@@ -64,26 +77,26 @@ class FightPage extends Component {
       .then(handleResponse)
       .then(fights => this.setState({ fights }))
   }
-  getWeapons = () => {
-    return fetch(`${base_url}weapons`)
-      .then(handleResponse)
-      .then(weapons => this.setState({ weapons }))
-  }
-  getMovements = () => {
-    return fetch(`${base_url}movements`)
-      .then(handleResponse)
-      .then(movements => this.setState({ movements }))
-  }
-  getTechniques = () => {
-    return fetch(`${base_url}techniques`)
-      .then(handleResponse)
-      .then(techniques => this.setState({ techniques }))
-  }
-  getLines = () => {
-    return fetch(`${base_url}lines`)
-      .then(handleResponse)
-      .then(lines => this.setState({ lines }))
-  }
+  // getWeapons = () => {
+  //   return fetch(`${base_url}weapons`)
+  //     .then(handleResponse)
+  //     .then(weapons => this.setState({ weapons }))
+  // }
+  // getMovements = () => {
+  //   return fetch(`${base_url}movements`)
+  //     .then(handleResponse)
+  //     .then(movements => this.setState({ movements }))
+  // }
+  // getTechniques = () => {
+  //   return fetch(`${base_url}techniques`)
+  //     .then(handleResponse)
+  //     .then(techniques => this.setState({ techniques }))
+  // }
+  // getLines = () => {
+  //   return fetch(`${base_url}lines`)
+  //     .then(handleResponse)
+  //     .then(lines => this.setState({ lines }))
+  // }
 
   getCharacters = () => {
     return fetch(`${base_url}characters`)
@@ -126,7 +139,7 @@ class FightPage extends Component {
   // };
 
   createNewFight = name => {
-    console.log('fightpagename', name)
+
     fetch(`${base_url}fights`, {
       method: 'POST',
       headers: {
@@ -153,22 +166,23 @@ class FightPage extends Component {
   }
 
 
-  removeFight = selectedFight => {
-    const id = selectedFight.id
+  // removeFight = selectedFight => {
+  //   const id = selectedFight.id
 
-    const fights = this.state.fights.filter(fight => {
-      return fight !== selectedFight
-    })
+  //   const fights = this.state.fights.filter(fight => {
+  //     return fight !== selectedFight
+  //   })
 
-    this.setState({ fights })
-    fetch(`${base_url}fights/${id}`, {
-      method: "DELETE"
-    })
-      .then(handleResponse)
-  }
+  //   this.setState({ fights })
+  //   fetch(`${base_url}fights/${id}`, {
+  //     method: "DELETE"
+  //   })
+  //     .then(handleResponse)
+  // }
 
 
   render() {
+
 
     return (
 
@@ -177,14 +191,21 @@ class FightPage extends Component {
         <h1>Your Fights</h1>
         <FightCollection
           fights={this.state.fights}
+
           characters={this.state.characters}
           weapons={this.state.weapons}
           movements={this.state.movements}
           techniques={this.state.techniques}
           lines={this.state.lines}
-          removeFight={this.removeFight}
+          // removeFight={this.removeFight}
           getCharacters={this.getCharacters}
+          selectedFight={this.state.selectedFight}
+          selectFight={this.selectFight}
+          backToFights={this.backToFights}
+        />
 
+        <AddFightForm
+          createNewFight={this.createNewFight}
         />
         <AddFightForm
           createNewFight={this.createNewFight}

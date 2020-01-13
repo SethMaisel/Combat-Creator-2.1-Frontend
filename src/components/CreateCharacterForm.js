@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import SequenceForm from "./SequenceForm"
 
 const base_url = 'http://localhost:3000/'
 const handleResponse = (response => response.json())
@@ -32,7 +33,7 @@ class CreateCharacterForm extends Component {
         this.setState({ [event.target.name]: event.target.value })
     }
 
-    checkForCharacter = (event, characterName) => {
+    checkForCharacter = (event) => {
         event.preventDefault()
         const character = this.props.characters.find(character => character["name"].toLowerCase() === this.state.character_name.toLowerCase())
         // this.setState({character})
@@ -48,7 +49,7 @@ class CreateCharacterForm extends Component {
 
     createNewCharacter = name => {
 
-
+        
         console.log('createCharacter', name)
         fetch(`${base_url}characters`, {
             method: 'POST',
@@ -57,7 +58,7 @@ class CreateCharacterForm extends Component {
             },
             body: JSON.stringify({ "name": name })
         }).then(handleResponse)
-        .then(character => this.setState({character}))
+            .then(character => this.setState({ character }))
     }
 
     render() {
@@ -65,6 +66,7 @@ class CreateCharacterForm extends Component {
         console.log("CharacterState", this.state.character)
         return (
             <div>
+                <h1>{this.character_name}</h1>
                 <form onSubmit={this.checkForCharacter}>
                     <input
 
@@ -81,7 +83,22 @@ class CreateCharacterForm extends Component {
                         required
                     />
                 </form>
+
+
+                <SequenceForm
+                    sequence_id={this.props.sequence_id}
+                    fight_id={this.props.fight_id}
+                    characters={this.props.characters}
+                    weapons={this.props.weapons}
+                    movements={this.props.movements}
+                    techniques={this.props.techniques}
+                    lines={this.props.lines}
+                    getCharacters={this.props.getCharacters}
+                
+            
+                />
             </div>
+            
         )
     }
 };

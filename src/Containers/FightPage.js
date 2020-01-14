@@ -147,6 +147,7 @@ class FightPage extends Component {
       },
       body: JSON.stringify({ "name": name })
     }).then(handleResponse)
+    .then(fight => this.setState({fights: [...this.state.fights, fight]}))
 
     // .then(name => {
     //   this.setState({

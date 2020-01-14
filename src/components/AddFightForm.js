@@ -34,10 +34,11 @@ class AddFightForm extends Component {
                     value={this.state.fight}
                     />
 
-                <input 
+                <input
                     type='submit' 
-                    placeholder='Create Fight' 
-                    required />  
+                    value='Create Fight' 
+                required />  
+                    
                 
                 </form>
             </div>

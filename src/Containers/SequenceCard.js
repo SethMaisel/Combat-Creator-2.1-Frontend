@@ -19,7 +19,7 @@ const SequenceCard = ({ sequence_id, fight, character, weapon, movement, techniq
             </div>
 
             {/* <div className="sequenceForms"> */}
-            <div>
+            <div className="characterCardDisplay">
                 <CharacterCard
 
                     characters={characters}

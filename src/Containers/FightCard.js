@@ -1,5 +1,6 @@
 import React from "react";
 import SequenceCard from "./SequenceCard"
+import CreateCharacterForm from "../components/CreateCharacterForm"
 
 const FightCard = ({ fight, selectFight, selectedFight, backToFights, characters, getCharacters, weapons, movements, techniques, lines, removeFight }) => {
 
@@ -47,13 +48,13 @@ const FightCard = ({ fight, selectFight, selectedFight, backToFights, characters
                     <div className="sequencesContainer">
                         {sequenceHandler()}
                     </div>
-
+                    <CreateCharacterForm />
                     <button
                         className="goBackButton"
                         onClick={backToFights}
                     >
                         Go Back
-            </button>
+                    </button>
                 </div>
             }
         </div>

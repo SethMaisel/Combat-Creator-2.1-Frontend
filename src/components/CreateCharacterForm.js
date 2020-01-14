@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SequenceForm from "./SequenceForm"
+// import SequenceForm from "./SequenceForm"
 
 const base_url = 'http://localhost:3000/'
 const handleResponse = (response => response.json())
@@ -85,7 +85,7 @@ class CreateCharacterForm extends Component {
                 </form>
 
 
-                <SequenceForm
+                {/* <SequenceForm
                     sequence_id={this.props.sequence_id}
                     fight_id={this.props.fight_id}
                     characters={this.props.characters}
@@ -96,7 +96,7 @@ class CreateCharacterForm extends Component {
                     getCharacters={this.props.getCharacters}
                 
             
-                />
+                /> */}
             </div>
             
         )

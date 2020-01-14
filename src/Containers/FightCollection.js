@@ -4,7 +4,7 @@ import FightCard from "./FightCard"
 
 // import SequenceCard from "../components/SequenceCard";
 
-const FightCollection = ({ fights, selectedFight, selectFight, backToFights, characters, getCharacters, weapons, movements, techniques, lines }) => {
+const FightCollection = ({ fights, selectedFight, selectFight, backToFights, characters, getCharacters, weapons, movements, techniques, lines, removeFight }) => {
     const fightData = fights.map(fight => {
         // console.log(fight.sequences)
         return <FightCard
@@ -19,7 +19,7 @@ const FightCollection = ({ fights, selectedFight, selectFight, backToFights, cha
             movements={movements}
             techniques={techniques}
             lines={lines}
-            // removeFight={removeFight}
+            removeFight={removeFight}
             getCharacters={getCharacters}
         />
     })
@@ -34,11 +34,7 @@ const FightCollection = ({ fights, selectedFight, selectFight, backToFights, cha
             <div className="row">
                 {fightData}
 
-                <button
-                // onClick={removeFight}
-                >
-                Delete
-                </button>
+                
 
             </div>
         </div>

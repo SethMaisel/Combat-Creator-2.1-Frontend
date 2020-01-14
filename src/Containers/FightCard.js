@@ -1,7 +1,7 @@
 import React from "react";
-import SequenceCard from "../components/SequenceCard"
+import SequenceCard from "./SequenceCard"
 
-const FightCard = ({ fight, selectFight, selectedFight, backToFights, characters, getCharacters, weapons, movements, techniques, lines }) => {
+const FightCard = ({ fight, selectFight, selectedFight, backToFights, characters, getCharacters, weapons, movements, techniques, lines, removeFight }) => {
 
 
     const sequenceHandler = () => {
@@ -36,6 +36,11 @@ const FightCard = ({ fight, selectFight, selectedFight, backToFights, characters
             <div className="fightName" onClick={() =>
                 selectFight(fight)}>
                 {fight.name}
+                <button
+                    onClick={()=> removeFight(fight)}
+                >
+                    Delete
+                </button>
             </div>
             {selectedFight && fight.id === selectedFight.id &&
                 <div>

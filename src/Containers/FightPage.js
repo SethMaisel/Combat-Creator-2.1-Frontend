@@ -166,19 +166,19 @@ class FightPage extends Component {
   }
 
 
-  // removeFight = selectedFight => {
-  //   const id = selectedFight.id
+  removeFight = selectedFight => {
+    const id = selectedFight.id
 
-  //   const fights = this.state.fights.filter(fight => {
-  //     return fight !== selectedFight
-  //   })
+    const fights = this.state.fights.filter(fight => {
+      return fight !== selectedFight
+    })
 
-  //   this.setState({ fights })
-  //   fetch(`${base_url}fights/${id}`, {
-  //     method: "DELETE"
-  //   })
-  //     .then(handleResponse)
-  // }
+    this.setState({ fights })
+    fetch(`${base_url}fights/${id}`, {
+      method: "DELETE"
+    })
+      .then(handleResponse)
+  }
 
 
   render() {
@@ -197,16 +197,13 @@ class FightPage extends Component {
           movements={this.state.movements}
           techniques={this.state.techniques}
           lines={this.state.lines}
-          // removeFight={this.removeFight}
+          removeFight={this.removeFight}
           getCharacters={this.getCharacters}
           selectedFight={this.state.selectedFight}
           selectFight={this.selectFight}
           backToFights={this.backToFights}
         />
 
-        <AddFightForm
-          createNewFight={this.createNewFight}
-        />
         <AddFightForm
           createNewFight={this.createNewFight}
         />

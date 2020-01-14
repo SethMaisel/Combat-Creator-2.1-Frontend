@@ -1,6 +1,7 @@
 import React from "react";
 // import SequenceForm from "./SequenceForm"
-import CreateCharacterForm from "./CreateCharacterForm"
+// import CreateCharacterForm from "../components/CreateCharacterForm"
+import CharacterCard from "./CharacterCard"
 
 const SequenceCard = ({ sequence_id, fight, character, weapon, movement, technique, line, characters, weapons, movements, techniques, lines, getCharacters }) => {
 
@@ -11,6 +12,7 @@ const SequenceCard = ({ sequence_id, fight, character, weapon, movement, techniq
 
     return (
         <div className="sequenceCard">
+            
             <div className="content">
                 <p>{character}: {weapon}--{movement} with {technique} to {line} </p>
 
@@ -18,7 +20,7 @@ const SequenceCard = ({ sequence_id, fight, character, weapon, movement, techniq
 
             {/* <div className="sequenceForms"> */}
             <div>
-                <CreateCharacterForm
+                <CharacterCard
 
                     characters={characters}
                     sequence_id={sequence_id}
@@ -28,7 +30,6 @@ const SequenceCard = ({ sequence_id, fight, character, weapon, movement, techniq
                     techniques={techniques}
                     lines={lines}
                     getCharacters={getCharacters}
-                // getCharacters={getCharacters}
 
                 />
             </div>

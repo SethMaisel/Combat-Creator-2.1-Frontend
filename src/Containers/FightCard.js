@@ -6,6 +6,7 @@ const FightCard = ({ fight, selectFight, selectedFight, backToFights, characters
 
     const sequenceHandler = () => {
         if (fight.sequences.length > 0) {
+            console.log("sequenceHandlerFight", fight)
             return fight.sequences.map(sequence => {
 
                 return <SequenceCard

@@ -2,7 +2,13 @@ import React from "react";
 import SequenceCard from "./SequenceCard"
 import CreateCharacterForm from "../components/CreateCharacterForm"
 
-const FightCard = ({ fight, selectFight, selectedFight, backToFights, characters, getCharacters, weapons, movements, techniques, lines, removeFight }) => {
+const FightCard = (props) => {
+
+    const { fight, selectFight, selectedFight, 
+            backToFights, characters, getCharacters, 
+            weapons, movements, techniques, lines, 
+            removeFight, checkForCharacter, createNewCharacter 
+        } = props
 
 
     const sequenceHandler = () => {
@@ -50,13 +56,17 @@ const FightCard = ({ fight, selectFight, selectedFight, backToFights, characters
                     </div>
                     <CreateCharacterForm
                         characters={characters}
-                        getCharacters={getCharacters}
-                        fight={fight}
-                        characters={characters}
-                        weapons={weapons}
-                        movements={movements}
-                        techniques={techniques}
-                        lines={lines} />
+                        // fight={fight}
+                        // characters={characters}
+                        // weapons={weapons}
+                        // movements={movements}
+                        // techniques={techniques}
+                        // lines={lines} 
+                        // getCharacters={getCharacters}
+                        // checkForCharacter={checkForCharacter}
+                        createNewCharacter={createNewCharacter}
+                    />
+                    
                     <button
                         className="goBackButton"
                         onClick={backToFights}

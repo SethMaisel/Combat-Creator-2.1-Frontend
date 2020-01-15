@@ -1,12 +1,8 @@
 import React from "react";
 import FightCard from "./FightCard"
-// import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-
-// import SequenceCard from "../components/SequenceCard";
 
 const FightCollection = ({ fights, selectedFight, selectFight, backToFights, characters, getCharacters, weapons, movements, techniques, lines, removeFight }) => {
     const fightData = fights.map(fight => {
-        // console.log(fight.sequences)
         return <FightCard
             key={fight.id}
             fight={fight}
@@ -14,7 +10,6 @@ const FightCollection = ({ fights, selectedFight, selectFight, backToFights, cha
             selectFight={selectFight}
             backToFights={backToFights}
             characters={characters}
-            // sequences={fight.sequences}
             weapons={weapons}
             movements={movements}
             techniques={techniques}
@@ -24,24 +19,16 @@ const FightCollection = ({ fights, selectedFight, selectFight, backToFights, cha
         />
     })
 
-    // const removeFight = (fight) => {
-        
-    // }
-
     return (
 
         <div className="fight collection">
             <div className="row">
                 {fightData}
 
-                
-
             </div>
         </div>
 
     );
 }
-
-
 
 export default FightCollection;

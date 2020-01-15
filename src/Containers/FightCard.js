@@ -38,7 +38,7 @@ const FightCard = ({ fight, selectFight, selectedFight, backToFights, characters
                 selectFight(fight)}>
                 {fight.name}
                 <button
-                    onClick={()=> removeFight(fight)}
+                    onClick={() => removeFight(fight)}
                 >
                     Delete
                 </button>
@@ -48,7 +48,15 @@ const FightCard = ({ fight, selectFight, selectedFight, backToFights, characters
                     <div className="sequencesContainer">
                         {sequenceHandler()}
                     </div>
-                    <CreateCharacterForm />
+                    <CreateCharacterForm
+                        characters={characters}
+                        getCharacters={getCharacters}
+                        fight={fight}
+                        characters={characters}
+                        weapons={weapons}
+                        movements={movements}
+                        techniques={techniques}
+                        lines={lines} />
                     <button
                         className="goBackButton"
                         onClick={backToFights}

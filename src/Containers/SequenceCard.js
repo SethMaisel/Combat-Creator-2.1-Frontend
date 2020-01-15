@@ -23,7 +23,7 @@ const SequenceCard = ({ sequence_id, fight, character, weapon, movement, techniq
                 <CharacterCard
 
                     characters={characters}
-                    sequence_id={sequence_id}
+                    // sequence_id={sequence_id}
                     fight_id={fight.id}
                     weapons={weapons}
                     movements={movements}

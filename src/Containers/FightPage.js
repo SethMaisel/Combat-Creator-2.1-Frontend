@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 import FightCollection from "./FightCollection";
-// import FightCard from './FightCard';
 import AddFightForm from "../components/AddFightForm"
-
-// import FightSequences from "./FightSequences";
-// import RemoveFightButton from "../components/RemoveFightButton";
-// import '../App.css';
 import '../styling/FightPage.css'
 
 const base_url = 'http://localhost:3000/'
 const handleResponse = (response => response.json())
-
 
 class FightPage extends Component {
 
@@ -22,17 +16,30 @@ class FightPage extends Component {
     movements: [],
     techniques: [],
     lines: []
-
   }
+
   componentDidMount() {
-    this.getFights()
-    this.getCharacters()
-    // this.getWeapons()
-    // this.getMovements()
-    // this.getTechniques()
-    // this.getLines()
-
+    this.getData('fights')
+    this.getData('characters')
+    
   }
+
+  getData = (path) => {
+    return fetch(`${base_url}${path}`)
+      .then(handleResponse)
+      .then(data => this.setState({ [path]: data}))
+  }
+  // getFights = () => {
+  //   return fetch(`${base_url}fights`)
+  //     .then(handleResponse)
+  //     .then(fights => this.setState({ fights }))
+  // }
+  
+  // getCharacters = () => {
+  //   return fetch(`${base_url}characters`)
+  //     .then(handleResponse)
+  //     .then(characters => this.setState({ characters }))
+  // }
 
   selectFight = (fight) => {
     this.setState({ selectedFight: fight })
@@ -67,77 +74,6 @@ class FightPage extends Component {
   }
 
 
-  // fetchCall(url, method, body) {
-  //   const headers = { "Content-Type": "application/json"};
-  //   return fetch( url, { method, headers, body } );
-  // }
-
-  getFights = () => {
-    return fetch(`${base_url}fights`)
-      .then(handleResponse)
-      .then(fights => this.setState({ fights }))
-  }
-  // getWeapons = () => {
-  //   return fetch(`${base_url}weapons`)
-  //     .then(handleResponse)
-  //     .then(weapons => this.setState({ weapons }))
-  // }
-  // getMovements = () => {
-  //   return fetch(`${base_url}movements`)
-  //     .then(handleResponse)
-  //     .then(movements => this.setState({ movements }))
-  // }
-  // getTechniques = () => {
-  //   return fetch(`${base_url}techniques`)
-  //     .then(handleResponse)
-  //     .then(techniques => this.setState({ techniques }))
-  // }
-  // getLines = () => {
-  //   return fetch(`${base_url}lines`)
-  //     .then(handleResponse)
-  //     .then(lines => this.setState({ lines }))
-  // }
-
-  getCharacters = () => {
-    return fetch(`${base_url}characters`)
-      .then(handleResponse)
-      .then(characters => this.setState({ characters }))
-  }
-
-  // getSequences = () => {
-  //   return fetch(`${base_url}sequences`) 
-  //       .then(handleResponse)
-  //   .then(sequences => this.setState({sequences}))
-  // }
-
-  // createSequence = (sequence) => {
-  //   const { fights } = this.state;
-
-  //   const updatedFights = findFight(fights, sequence);
-  //   const oldFights = filterFights(fights, sequence);
-  //   updatedFight.sequence.push(sequence);
-
-  //   this.setState({ fights: [...oldFights, updatedFights] });
-
-  //   const body = JSON.stringify(rating);
-  //   fetchCall(`${base_url}`, "POST", body);
-  // };
-
-  // createFights = () => {
-  //   const { fights } = this.state;
-  //   return fights.map(fight => {
-  //     return (
-  //       <FightCard 
-  //         key={ fight.id }
-  //         fight={ fight }
-  //         createSequence={ this.createSequence }
-  // updateSequence={ this.updateSequence }
-  // deleteSequence={ this.deleteSequence }
-  //       />
-  //     );
-  //   });
-  // };
-
   createNewFight = name => {
 
     fetch(`${base_url}fights`, {
@@ -147,23 +83,7 @@ class FightPage extends Component {
       },
       body: JSON.stringify({ "name": name })
     }).then(handleResponse)
-    .then(fight => this.setState({fights: [...this.state.fights, fight]}))
-
-    // .then(name => {
-    //   this.setState({
-    //     fights: [...this.state.fights, name]
-    //   })
-    // })
-    // .then(fights => {
-    // const updatedFights = this.findFight(fights, name);
-    // const oldFights = this.filterFights(fights, name);
-    // this.updatedFightpush(name);
-
-
-    // this.setState({ fights: [...oldFights, updatedFights] });
-
-    // }
-
+      .then(fight => this.setState({ fights: [...this.state.fights, fight] }))
   }
 
 
@@ -183,8 +103,6 @@ class FightPage extends Component {
 
 
   render() {
-
-
     return (
 
       <div>
@@ -192,15 +110,15 @@ class FightPage extends Component {
         <h1>Your Fights</h1>
         <FightCollection
           fights={this.state.fights}
-
+          selectedFight={this.state.selectedFight}
           characters={this.state.characters}
           weapons={this.state.weapons}
           movements={this.state.movements}
           techniques={this.state.techniques}
           lines={this.state.lines}
+
           removeFight={this.removeFight}
           getCharacters={this.getCharacters}
-          selectedFight={this.state.selectedFight}
           selectFight={this.selectFight}
           backToFights={this.backToFights}
         />
@@ -208,30 +126,9 @@ class FightPage extends Component {
         <AddFightForm
           createNewFight={this.createNewFight}
         />
-
-        {/* <RemoveFightButton
-              removeFight={this.removeFight}
-              /> */}
-
-
-        {/* <h2>Fight Sequences</h2> */}
-        {/* <FightSequences 
-                sequences={this.state.sequences} /> */}
       </div>
     );
   }
-
-  // findFight(fights, name) {
-  //   return fights.find(fight => {
-  //     return fight.id === sequence.fight_id;
-  //   });
-  // }
-
-  // filterFights(fights, sequence) {
-  //   return fights.filter(fight => {
-  //     return fight.id !== sequence.fight_id;
-  //   });
-  // }
 };
 
 export default FightPage;

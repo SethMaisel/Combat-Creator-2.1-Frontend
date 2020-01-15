@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import SequenceForm from "./SequenceForm"
+import SequenceForm from "./SequenceForm"
 
 const base_url = 'http://localhost:3000/'
 const handleResponse = (response => response.json())
@@ -49,7 +49,7 @@ class CreateCharacterForm extends Component {
 
     createNewCharacter = name => {
 
-        
+
         console.log('createCharacter', name)
         fetch(`${base_url}characters`, {
             method: 'POST',
@@ -59,14 +59,15 @@ class CreateCharacterForm extends Component {
             body: JSON.stringify({ "name": name })
         }).then(handleResponse)
             .then(character => this.setState({ character }))
+
     }
 
     render() {
 
         console.log("CharacterState", this.state.character)
         return (
-            <div>
-                <h1>{this.character_name}</h1>
+            <div className="characterForm" >
+                
                 <form onSubmit={this.checkForCharacter}>
                     <input
 
@@ -83,6 +84,20 @@ class CreateCharacterForm extends Component {
                         required
                     />
                 </form>
+                {this.state.character === this.checkForCharacter &&
+                    <div className="showSequenceForm">
+                        <SequenceForm
+                            // key={this.props.sequence.id}
+                            // sequence_id={this.props.sequence.id}
+                            fight={this.props.fight}
+                            characters={this.props.characters}
+                            weapons={this.props.weapons}
+                            movements={this.props.movements}
+                            techniques={this.props.techniques}
+                            lines={this.props.lines}
+                        />
+                    </div>
+                }
 
 
                 {/* <SequenceForm
@@ -98,7 +113,7 @@ class CreateCharacterForm extends Component {
             
                 /> */}
             </div>
-            
+
         )
     }
 };

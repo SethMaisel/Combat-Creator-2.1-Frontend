@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import SequenceForm from "./SequenceForm"
 
-const base_url = 'http://localhost:3000/'
-const handleResponse = (response => response.json())
+// const base_url = 'http://localhost:3000/'
+// const handleResponse = (response => response.json())
 
 class CreateCharacterForm extends Component {
 
@@ -12,63 +12,48 @@ class CreateCharacterForm extends Component {
     }
 
 
-    // handleSubmit = event => {
-    //     event.preventDefault()
-    //     this.createNewCharacter(this.state)
-    // }
+    handleSubmit = event => {
+        event.preventDefault()
+        this.checkForCharacter()
+    }
 
-    // doesCharacterExist = characterName => {
-    //     const characterId = this.props.characters.find(character => character["name"].toLowerCase() == characterName.toLowerCase())
-    //     console.log("characterid", characterId)
-    //     return characterId
-    // }
-
-    // setValue = event => {
-    //     console.log("characterFormCharacter", event)
-    //     let characterId = this.doesCharacterExist(character)
-    //     characterId = characterId ? characterId : this.createNewCharacter(character)
-    //     this.setState({ [event.target.name]: event.target.value })
-    // }
     setValue = event => {
         this.setState({ [event.target.name]: event.target.value })
     }
 
-    checkForCharacter = (event) => {
-        event.preventDefault()
-        const character = this.props.characters.find(character => character["name"].toLowerCase() === this.state.character_name.toLowerCase())
-        // this.setState({character})
-        console.log("checkForCharacter", character)
+    checkForCharacter = () => {
+        // console.log("checkCharacterState", this.state.character)
+        const character = this.props.characters.find(characterName => characterName.name.toLowerCase() === this.state.character_name.toLowerCase())
         if (character) {
             this.setState({ character })
         }
         else {
-            this.createNewCharacter(this.state.character_name)
+            this.props.createNewCharacter(this.state.character_name)
 
         }
     }
 
-    createNewCharacter = name => {
+    // createNewCharacter = name => {
 
 
-        console.log('createCharacter', name)
-        fetch(`${base_url}characters`, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ "name": name })
-        }).then(handleResponse)
-            .then(character => this.setState({ character }))
+    //     console.log('createCharacter', name)
+    //     fetch(`${base_url}characters`, {
+    //         method: 'POST',
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify({ "name": name })
+    //     }).then(handleResponse)
+    //         .then(character => this.setState({ character }))
 
-    }
+    // }
 
     render() {
 
-        console.log("CharacterState", this.state.character)
         return (
             <div className="characterForm" >
-                
-                <form onSubmit={this.checkForCharacter}>
+
+                <form onSubmit={this.handleSubmit}>
                     <input
 
                         type='text'
@@ -84,13 +69,13 @@ class CreateCharacterForm extends Component {
                         required
                     />
                 </form>
-                {this.state.character === this.checkForCharacter &&
+                {this.state.character === this.props.checkForCharacter &&
                     <div className="showSequenceForm">
                         <SequenceForm
                             // key={this.props.sequence.id}
                             // sequence_id={this.props.sequence.id}
+                            character={this.state.character}
                             fight={this.props.fight}
-                            characters={this.props.characters}
                             weapons={this.props.weapons}
                             movements={this.props.movements}
                             techniques={this.props.techniques}

@@ -15,7 +15,7 @@ class FightPage extends Component {
     weapons: [],
     movements: [],
     techniques: [],
-    lines: []
+    lines: [],
   }
 
   componentDidMount() {
@@ -101,8 +101,40 @@ class FightPage extends Component {
       .then(handleResponse)
   }
 
+//   checkForCharacter = (event, character_name) => {
+//     event.preventDefault()
+    
+//     console.log("sequenceCardCharacterName", character_name)
+//     const character = this.state.characters.filter(characterName => console.log(characterName))
+//     // this.setState({character})
+//     console.log("checkForCharacter", character)
+//     if (character) {
+//         this.setState({ character })
+//     }
+//     else {
+//         this.createNewCharacter(this.state.character_name)
+
+//     }
+// }
+
+  createNewCharacter = name => {
+
+
+    console.log('createCharacter', name)
+    fetch(`${base_url}characters`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ "name": name })
+    }).then(handleResponse)
+        .then(character => this.setState({ character }))
+
+}
+
 
   render() {
+    console.log("fightpageCharacter", this.state.character)
     return (
 
       <div>
@@ -116,11 +148,12 @@ class FightPage extends Component {
           movements={this.state.movements}
           techniques={this.state.techniques}
           lines={this.state.lines}
-
           removeFight={this.removeFight}
           getCharacters={this.getCharacters}
           selectFight={this.selectFight}
           backToFights={this.backToFights}
+          // checkForCharacter={this.checkForCharacter}
+          createNewCharacter={this.createNewCharacter}
         />
 
         <AddFightForm

@@ -1,7 +1,15 @@
 import React from "react";
 import FightCard from "./FightCard"
 
-const FightCollection = ({ fights, selectedFight, selectFight, backToFights, characters, getCharacters, weapons, movements, techniques, lines, removeFight }) => {
+const FightCollection = (props) => {
+
+    const { 
+        fights, selectedFight, selectFight, backToFights, 
+        characters, getCharacters, weapons, movements, 
+        techniques, lines, removeFight, checkForCharacter, 
+        createNewCharacter 
+    } = props
+
     const fightData = fights.map(fight => {
         return <FightCard
             key={fight.id}
@@ -16,6 +24,8 @@ const FightCollection = ({ fights, selectedFight, selectFight, backToFights, cha
             lines={lines}
             removeFight={removeFight}
             getCharacters={getCharacters}
+            // checkForCharacter={checkForCharacter}
+            createNewCharacter={createNewCharacter}
         />
     })
 

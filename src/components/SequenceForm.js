@@ -5,11 +5,11 @@ import React, { Component } from "react";
 const base_url = 'http://localhost:3000/'
 const handleResponse = (response => response.json())
 
+
 class SequenceForm extends Component {
 
     state = {
-        character: "",
-        character_id: null,
+
         weapon_id: null,
         movement_id: null,
         technique_id: null,
@@ -22,45 +22,46 @@ class SequenceForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        this.createNewSequence(this.props.fight_id, this.state)
+        const character_id = this.props.character.id
+        const fight_id = this.props.fight.id
+        this.createNewSequence(fight_id, character_id, this.state)
 
     }
 
     setValue = event => {
-        console.log("characters", this.props.characters)
         this.setState({ [event.target.name]: event.target.value })
-        // this.doesCharacterExist(this.state.character)
     }
 
 
 
 
 
-    createNewSequence = (fight_id, sequence) => {
-        // let characterId = this.doesCharacterExist(sequence.character)
-        // characterId = characterId ? characterId : this.createNewCharacter(sequence.character)
-        const newSequence = { fight_id, ...sequence }
-        console.log("newSequence", newSequence)
+    // createNewSequence = (fight_id, character_id, sequence) => {
+    //     // let characterId = this.doesCharacterExist(sequence.character)
+    //     // characterId = characterId ? characterId : this.createNewCharacter(sequence.character)
+    //     const newSequence = { fight_id, character_id, ...sequence }
+    //     console.log("newSequence", newSequence)
 
 
-        fetch(`${base_url}sequences`, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newSequence)
-        }).then(handleResponse)
-            .then(console.log)
-    }
+    //     fetch(`${base_url}sequences`, {
+    //         method: 'POST',
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(newSequence)
+    //     }).then(handleResponse)
+    //         .then(console.log)
+    // }
 
     render() {
         console.log("sequenceStateCharacter", this.state.character)
         return (
             <div>
                 <div characterName="character">
-                    {this.chracter}
+                    {this.character}
                 </div>
 
+                <form onSubmit={this.handleSubmit}>
                 <select
                     placeholder='Select Weapon'
                     name="weapon_id"
@@ -122,6 +123,7 @@ class SequenceForm extends Component {
                     placeholder='Create Sequence'
                     required
                 />
+                </form>
             </div>
 
         )

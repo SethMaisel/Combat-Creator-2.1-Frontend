@@ -16,25 +16,30 @@ class FightPage extends Component {
     movements: [],
     techniques: [],
     lines: [],
+    character: null
   }
 
   componentDidMount() {
     this.getData('fights')
     this.getData('characters')
-    
+    this.getData('weapons')
+    this.getData('movements')
+    this.getData('techniques')
+    this.getData('lines')
+
   }
 
   getData = (path) => {
     return fetch(`${base_url}${path}`)
       .then(handleResponse)
-      .then(data => this.setState({ [path]: data}))
+      .then(data => this.setState({ [path]: data }))
   }
   // getFights = () => {
   //   return fetch(`${base_url}fights`)
   //     .then(handleResponse)
   //     .then(fights => this.setState({ fights }))
   // }
-  
+
   // getCharacters = () => {
   //   return fetch(`${base_url}characters`)
   //     .then(handleResponse)
@@ -101,35 +106,50 @@ class FightPage extends Component {
       .then(handleResponse)
   }
 
-//   checkForCharacter = (event, character_name) => {
-//     event.preventDefault()
-    
-//     console.log("sequenceCardCharacterName", character_name)
-//     const character = this.state.characters.filter(characterName => console.log(characterName))
-//     // this.setState({character})
-//     console.log("checkForCharacter", character)
-//     if (character) {
-//         this.setState({ character })
-//     }
-//     else {
-//         this.createNewCharacter(this.state.character_name)
+  //   checkForCharacter = (event, character_name) => {
+  //     event.preventDefault()
 
-//     }
-// }
+  //     console.log("sequenceCardCharacterName", character_name)
+  //     const character = this.state.characters.filter(characterName => console.log(characterName))
+  //     // this.setState({character})
+  //     console.log("checkForCharacter", character)
+  //     if (character) {
+  //         this.setState({ character })
+  //     }
+  //     else {
+  //         this.createNewCharacter(this.state.character_name)
+
+  //     }
+  // }
 
   createNewCharacter = name => {
 
 
-    console.log('createCharacter', name)
     fetch(`${base_url}characters`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ "name": name })
+    }).then(handleResponse)
+      .then(character => this.setState({ character }))
+
+  }
+
+  createNewSequence = (fight_id, character_id, sequence) => {
+    
+    const newSequence = { fight_id, character_id, ...sequence }
+    console.log("newSequence", newSequence)
+
+
+    fetch(`${base_url}sequences`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ "name": name })
+        body: JSON.stringify(newSequence)
     }).then(handleResponse)
-        .then(character => this.setState({ character }))
-
+        .then(console.log)
 }
 
 
@@ -154,6 +174,7 @@ class FightPage extends Component {
           backToFights={this.backToFights}
           // checkForCharacter={this.checkForCharacter}
           createNewCharacter={this.createNewCharacter}
+          createNewSequence={this.createNewSequence}
         />
 
         <AddFightForm

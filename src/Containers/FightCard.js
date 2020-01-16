@@ -7,7 +7,7 @@ const FightCard = (props) => {
     const { fight, selectFight, selectedFight, 
             backToFights, characters, getCharacters, 
             weapons, movements, techniques, lines, 
-            removeFight, checkForCharacter, createNewCharacter 
+            removeFight,  createNewCharacter, createNewSequence
         } = props
 
 
@@ -58,13 +58,14 @@ const FightCard = (props) => {
                         characters={characters}
                         // fight={fight}
                         // characters={characters}
-                        // weapons={weapons}
-                        // movements={movements}
-                        // techniques={techniques}
-                        // lines={lines} 
+                        weapons={weapons}
+                        movements={movements}
+                        techniques={techniques}
+                        lines={lines} 
                         // getCharacters={getCharacters}
                         // checkForCharacter={checkForCharacter}
                         createNewCharacter={createNewCharacter}
+                        createNewSequence={createNewSequence}
                     />
                     
                     <button

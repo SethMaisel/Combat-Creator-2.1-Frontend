@@ -6,8 +6,8 @@ const FightCollection = (props) => {
     const { 
         fights, selectedFight, selectFight, backToFights, 
         characters, getCharacters, weapons, movements, 
-        techniques, lines, removeFight, checkForCharacter, 
-        createNewCharacter 
+        techniques, lines, removeFight, 
+        createNewCharacter, createNewSequence
     } = props
 
     const fightData = fights.map(fight => {
@@ -26,6 +26,7 @@ const FightCollection = (props) => {
             getCharacters={getCharacters}
             // checkForCharacter={checkForCharacter}
             createNewCharacter={createNewCharacter}
+            createNewSequence={createNewSequence}
         />
     })
 

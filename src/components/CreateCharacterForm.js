@@ -29,6 +29,7 @@ class CreateCharacterForm extends Component {
         }
         else {
             this.props.createNewCharacter(this.state.character_name)
+            
 
         }
     }
@@ -69,8 +70,8 @@ class CreateCharacterForm extends Component {
                         required
                     />
                 </form>
-                {this.state.character === this.props.checkForCharacter &&
-                    <div className="showSequenceForm">
+                {/* {this.state.character === this.props.checkForCharacter && */}
+                    {/* <div className="showSequenceForm">
                         <SequenceForm
                             // key={this.props.sequence.id}
                             // sequence_id={this.props.sequence.id}
@@ -80,8 +81,9 @@ class CreateCharacterForm extends Component {
                             movements={this.props.movements}
                             techniques={this.props.techniques}
                             lines={this.props.lines}
+                            createNewSequence={this.props.createNewSequence}
                         />
-                    </div>
+                    </div> */}
                 }
 
 

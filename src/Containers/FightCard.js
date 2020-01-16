@@ -30,6 +30,7 @@ const FightCard = (props) => {
                     techniques={techniques}
                     lines={lines}
                     getCharacters={getCharacters}
+                    
                 />
 
             })
@@ -56,14 +57,11 @@ const FightCard = (props) => {
                     </div>
                     <CreateCharacterForm
                         characters={characters}
-                        // fight={fight}
-                        // characters={characters}
+                        fight={fight}
                         weapons={weapons}
                         movements={movements}
                         techniques={techniques}
                         lines={lines} 
-                        // getCharacters={getCharacters}
-                        // checkForCharacter={checkForCharacter}
                         createNewCharacter={createNewCharacter}
                         createNewSequence={createNewSequence}
                     />

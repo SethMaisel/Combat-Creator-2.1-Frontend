@@ -24,7 +24,6 @@ const FightCollection = (props) => {
             lines={lines}
             removeFight={removeFight}
             getCharacters={getCharacters}
-            // checkForCharacter={checkForCharacter}
             createNewCharacter={createNewCharacter}
             createNewSequence={createNewSequence}
         />

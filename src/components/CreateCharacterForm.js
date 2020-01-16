@@ -29,7 +29,7 @@ class CreateCharacterForm extends Component {
         }
         else {
             this.props.createNewCharacter(this.state.character_name)
-            
+
 
         }
     }
@@ -50,6 +50,7 @@ class CreateCharacterForm extends Component {
     // }
 
     render() {
+        console.log("characterForm", this.props.fight)
 
         return (
             <div className="characterForm" >
@@ -70,35 +71,28 @@ class CreateCharacterForm extends Component {
                         required
                     />
                 </form>
-                {/* {this.state.character === this.props.checkForCharacter && */}
-                    {/* <div className="showSequenceForm">
-                        <SequenceForm
-                            // key={this.props.sequence.id}
-                            // sequence_id={this.props.sequence.id}
-                            character={this.state.character}
-                            fight={this.props.fight}
-                            weapons={this.props.weapons}
-                            movements={this.props.movements}
-                            techniques={this.props.techniques}
-                            lines={this.props.lines}
-                            createNewSequence={this.props.createNewSequence}
-                        />
-                    </div> */}
+                {this.state.character &&
+                    <div>
+                        <div className="characterName" onClick={() =>
+                            this.checkForCharacter(this.state.character)}>
+                                {this.state.character.name}:
+                        </div>
+                        <div className="showSequenceForm">
+                            <SequenceForm
+                                // key={this.props.sequence.id}
+                                // sequence_id={this.props.sequence.id}
+                                character={this.state.character}
+                                fight={this.props.fight}
+                                weapons={this.props.weapons}
+                                movements={this.props.movements}
+                                techniques={this.props.techniques}
+                                lines={this.props.lines}
+                                createNewSequence={this.props.createNewSequence}
+                            />
+                        </div>
+                    </div>
                 }
 
-
-                {/* <SequenceForm
-                    sequence_id={this.props.sequence_id}
-                    fight_id={this.props.fight_id}
-                    characters={this.props.characters}
-                    weapons={this.props.weapons}
-                    movements={this.props.movements}
-                    techniques={this.props.techniques}
-                    lines={this.props.lines}
-                    getCharacters={this.props.getCharacters}
-                
-            
-                /> */}
             </div>
 
         )

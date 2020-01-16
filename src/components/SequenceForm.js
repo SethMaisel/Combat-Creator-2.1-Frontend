@@ -24,17 +24,14 @@ class SequenceForm extends Component {
         event.preventDefault()
         const character_id = this.props.character.id
         const fight_id = this.props.fight.id
-        this.createNewSequence(fight_id, character_id, this.state)
+        const {weapon_id, technique_id, movement_id, line_id} = this.state
+        this.props.createNewSequence({fight_id, character_id, weapon_id, technique_id, movement_id, line_id})
 
     }
 
     setValue = event => {
         this.setState({ [event.target.name]: event.target.value })
     }
-
-
-
-
 
     // createNewSequence = (fight_id, character_id, sequence) => {
     //     // let characterId = this.doesCharacterExist(sequence.character)
@@ -54,10 +51,10 @@ class SequenceForm extends Component {
     // }
 
     render() {
-        console.log("sequenceStateCharacter", this.state.character)
+        console.log("sequenceState", this.props.fight)
         return (
             <div>
-                <div characterName="character">
+                <div className="character">
                     {this.character}
                 </div>
 

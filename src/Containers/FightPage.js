@@ -16,7 +16,8 @@ class FightPage extends Component {
     movements: [],
     techniques: [],
     lines: [],
-    character: null
+    character: null, 
+    
   }
 
   componentDidMount() {
@@ -106,22 +107,6 @@ class FightPage extends Component {
       .then(handleResponse)
   }
 
-  //   checkForCharacter = (event, character_name) => {
-  //     event.preventDefault()
-
-  //     console.log("sequenceCardCharacterName", character_name)
-  //     const character = this.state.characters.filter(characterName => console.log(characterName))
-  //     // this.setState({character})
-  //     console.log("checkForCharacter", character)
-  //     if (character) {
-  //         this.setState({ character })
-  //     }
-  //     else {
-  //         this.createNewCharacter(this.state.character_name)
-
-  //     }
-  // }
-
   createNewCharacter = name => {
 
 
@@ -136,12 +121,8 @@ class FightPage extends Component {
 
   }
 
-  createNewSequence = (fight_id, character_id, sequence) => {
-    
-    const newSequence = { fight_id, character_id, ...sequence }
+  createNewSequence = (newSequence) => {
     console.log("newSequence", newSequence)
-
-
     fetch(`${base_url}sequences`, {
         method: 'POST',
         headers: {
@@ -149,12 +130,10 @@ class FightPage extends Component {
         },
         body: JSON.stringify(newSequence)
     }).then(handleResponse)
-        .then(console.log)
-}
-
+    .then(console.log)
+  }
 
   render() {
-    console.log("fightpageCharacter", this.state.character)
     return (
 
       <div>
@@ -175,6 +154,7 @@ class FightPage extends Component {
           // checkForCharacter={this.checkForCharacter}
           createNewCharacter={this.createNewCharacter}
           createNewSequence={this.createNewSequence}
+          
         />
 
         <AddFightForm

@@ -4,26 +4,30 @@ import CreateCharacterForm from "../components/CreateCharacterForm"
 
 
 const SequenceCard = (props) => {
-    const { character, weapon,
-        movement, technique, line,
+    const { character, weapon, movement, selectedSequence,
+        technique, line, sequence, removeSequence,
     } = props
 
-    // console.log("sequenceCardFight", sequence_id)
-
-
-
-
-
     return (
+        
         <div className="sequenceCard">
+            
+                <div className="content">
+                    <p>{character}: {weapon}--{movement} with {technique} to {line} </p>
 
-            <div className="content">
-                <p>{character}: {weapon}--{movement} with {technique} to {line} </p>
+                </div>
 
+            <div className="removeSequence" >
+                <button
+                    onClick={() => removeSequence(sequence)}
+                >
+                    Delete Sequence
+                </button>
             </div>
 
 
         </div>
+
     )
 
 };

@@ -12,11 +12,13 @@ class FightPage extends Component {
     fights: [],
     selectedFight: null,
     characters: [],
+    character: null,
     weapons: [],
     movements: [],
     techniques: [],
     lines: [],
-    character: null, 
+    sequences: [],
+    selectedSequence: null 
     
   }
 
@@ -27,6 +29,7 @@ class FightPage extends Component {
     this.getData('movements')
     this.getData('techniques')
     this.getData('lines')
+    this.getData('sequences')
 
   }
 
@@ -40,11 +43,10 @@ class FightPage extends Component {
     this.setState({ selectedFight: fight })
   }
 
+  
   backToFights = () => {
     this.setState({ selectedFight: null })
   }
-
-
 
   createHeader = () => {
     return (
@@ -96,8 +98,22 @@ class FightPage extends Component {
       .then(handleResponse)
   }
 
-  createNewCharacter = name => {
+  removeSequence = selectedSequence => {
+    console.log("selectedSequence", selectedSequence)
+    const id = selectedSequence.id
 
+    const sequences = this.state.sequences.filter(sequence => {
+      return sequence !== selectedSequence
+    })
+
+    this.setState({ sequences })
+    fetch(`${base_url}sequences/${id}`, {
+      method: "DELETE"
+    })
+      .then(handleResponse)
+  }
+
+  createNewCharacter = name => {
 
     fetch(`${base_url}characters`, {
       method: 'POST',
@@ -122,6 +138,8 @@ class FightPage extends Component {
     .then(console.log)
   }
 
+  
+
   render() {
     return (
 
@@ -130,17 +148,19 @@ class FightPage extends Component {
         <h1>Your Fights</h1>
         <FightCollection
           fights={this.state.fights}
-          selectedFight={this.state.selectedFight}
           characters={this.state.characters}
           weapons={this.state.weapons}
           movements={this.state.movements}
           techniques={this.state.techniques}
           lines={this.state.lines}
-          removeFight={this.removeFight}
-          getCharacters={this.getCharacters}
+          sequences={this.state.sequences}
+          selectedSequence={this.state.selectedSequence}
+          removeSequence={this.removeSequence}
           selectFight={this.selectFight}
+          selectedFight={this.state.selectedFight}
+          removeFight={this.removeFight}
           backToFights={this.backToFights}
-          // checkForCharacter={this.checkForCharacter}
+          getCharacters={this.getCharacters}
           createNewCharacter={this.createNewCharacter}
           createNewSequence={this.createNewSequence}
           

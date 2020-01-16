@@ -105,6 +105,9 @@ class SequenceForm extends Component {
                         required
                     />
                 </form>
+                <SequenceForm
+                    sequence={this.state, this.props.character_id, this.props.fight_id}
+                    />
             </div>
 
         )

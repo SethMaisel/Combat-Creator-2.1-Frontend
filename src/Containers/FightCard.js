@@ -1,6 +1,7 @@
 import React from "react";
 import SequenceCard from "./SequenceCard"
 import CreateCharacterForm from "../components/CreateCharacterForm"
+import SequenceForm from "../components/SequenceForm"
 
 const FightCard = (props) => {
 

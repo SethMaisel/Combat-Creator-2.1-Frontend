@@ -35,17 +35,6 @@ class FightPage extends Component {
       .then(handleResponse)
       .then(data => this.setState({ [path]: data }))
   }
-  // getFights = () => {
-  //   return fetch(`${base_url}fights`)
-  //     .then(handleResponse)
-  //     .then(fights => this.setState({ fights }))
-  // }
-
-  // getCharacters = () => {
-  //   return fetch(`${base_url}characters`)
-  //     .then(handleResponse)
-  //     .then(characters => this.setState({ characters }))
-  // }
 
   selectFight = (fight) => {
     this.setState({ selectedFight: fight })

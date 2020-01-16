@@ -34,23 +34,7 @@ class CreateCharacterForm extends Component {
         }
     }
 
-    // createNewCharacter = name => {
-
-
-    //     console.log('createCharacter', name)
-    //     fetch(`${base_url}characters`, {
-    //         method: 'POST',
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({ "name": name })
-    //     }).then(handleResponse)
-    //         .then(character => this.setState({ character }))
-
-    // }
-
     render() {
-        console.log("characterForm", this.props.fight)
 
         return (
             <div className="characterForm" >

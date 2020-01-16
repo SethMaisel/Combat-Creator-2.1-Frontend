@@ -3,11 +3,12 @@ import FightCard from "./FightCard"
 
 const FightCollection = (props) => {
 
-    const { 
-        fights, selectedFight, selectFight, backToFights, 
-        characters, getCharacters, weapons, movements, 
-        techniques, lines, removeFight, 
-        createNewCharacter, createNewSequence
+    const {
+        fights, selectedFight, selectFight, backToFights,
+        characters, getCharacters, weapons, movements,
+        techniques, lines, removeFight, removeSequence,
+        createNewCharacter, createNewSequence, sequences, 
+        selectSequence, selectedSequence
     } = props
 
     const fightData = fights.map(fight => {
@@ -23,6 +24,9 @@ const FightCollection = (props) => {
             techniques={techniques}
             lines={lines}
             removeFight={removeFight}
+            sequences={sequences}
+            selectedSequence={selectedSequence}
+            removeSequence={removeSequence}
             getCharacters={getCharacters}
             createNewCharacter={createNewCharacter}
             createNewSequence={createNewSequence}

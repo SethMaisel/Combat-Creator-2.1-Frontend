@@ -8,7 +8,7 @@ const FightCard = (props) => {
         backToFights, characters, getCharacters,
         weapons, movements, techniques, lines,
         removeFight, createNewCharacter, selectedSequence,
-        createNewSequence, removeSequence,
+        createNewSequence, removeSequence, getData,
     } = props
 
 
@@ -68,6 +68,8 @@ const FightCard = (props) => {
                         lines={lines}
                         createNewCharacter={createNewCharacter}
                         createNewSequence={createNewSequence}
+                        // getData={getData}
+
                     />
 
                     <button

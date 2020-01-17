@@ -105,7 +105,7 @@ class FightPage extends Component {
     const sequences = this.state.sequences.filter(sequence => {
       return sequence !== selectedSequence
     })
-
+    
     this.setState({ sequences })
     fetch(`${base_url}sequences/${id}`, {
       method: "DELETE"
@@ -135,7 +135,12 @@ class FightPage extends Component {
         },
         body: JSON.stringify(newSequence)
     }).then(handleResponse)
-    .then(console.log)
+    .then(sequence => {
+      const updatedFight = this.state.fights.find(fight => fight.id === sequence.fight.id)
+      updatedFight.sequences.push(sequence)
+      const unchangedFights = this.state.fights.filter(fight => fight.id !== updatedFight.id)
+      this.setState({fights: [...unchangedFights, updatedFight]})
+    })
   }
 
   
@@ -163,6 +168,7 @@ class FightPage extends Component {
           getCharacters={this.getCharacters}
           createNewCharacter={this.createNewCharacter}
           createNewSequence={this.createNewSequence}
+          // getData={this.getData}
           
         />
 

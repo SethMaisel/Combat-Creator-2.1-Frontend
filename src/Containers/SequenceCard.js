@@ -9,24 +9,30 @@ const SequenceCard = (props) => {
     } = props
 
     return (
-        
         <div className="sequenceCard">
-            
+            {sequence ?
+        <>
                 <div className="content">
                     <p>{character}: {weapon}--{movement} with {technique} to {line} </p>
 
                 </div>
+                
 
             <div className="removeSequence" >
+                
                 <button
                     onClick={() => removeSequence(sequence)}
                 >
                     Delete Sequence
                 </button>
+                
             </div>
+            </>
+            : null}
 
 
         </div>
+
 
     )
 

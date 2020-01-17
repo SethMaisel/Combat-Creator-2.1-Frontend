@@ -5,7 +5,7 @@ import SequenceCard from '../containers/SequenceCard';
 class SequenceForm extends Component {
 
     state = {
-
+        sequence: [],
         weapon_id: null,
         movement_id: null,
         technique_id: null,
@@ -22,17 +22,18 @@ class SequenceForm extends Component {
         const fight_id = this.props.fight.id
         const { weapon_id, technique_id, movement_id, line_id } = this.state
         this.props.createNewSequence({ fight_id, character_id, weapon_id, technique_id, movement_id, line_id })
-        
-            // return (
-            //     <div className="sequenceRender">
-            //         <SequenceCard/>
-            //         <p>{this.props.character}: {this.weapon}--{this.movement} with {this.technique} to {this.line} </p>
-
-            //     </div>
-            // )
-        
-
     }
+
+    // return (
+    //     <div className="sequenceRender">
+    //         <SequenceCard/>
+    //         <p>{this.props.character}: {this.weapon}--{this.movement} with {this.technique} to {this.line} </p>
+
+    //     </div>
+    // )
+
+
+
 
     setValue = event => {
         this.setState({ [event.target.name]: event.target.value })
@@ -53,7 +54,7 @@ class SequenceForm extends Component {
                         value={this.state.weapon}
                     >
                         <option>Select Weapon</option>
-                        
+
                         {this.props.weapons.map(weapon => {
                             return <option value={weapon.id}>{weapon.name}</option>
                         })
@@ -108,9 +109,9 @@ class SequenceForm extends Component {
                         required
                     />
                 </form>
-                <SequenceCard
+                {/* <SequenceCard
                     sequence={this.state, this.props.character_id, this.props.fight_id}
-                    />
+                /> */}
             </div>
 
         )

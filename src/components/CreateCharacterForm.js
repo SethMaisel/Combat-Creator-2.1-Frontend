@@ -72,6 +72,8 @@ class CreateCharacterForm extends Component {
                                 techniques={this.props.techniques}
                                 lines={this.props.lines}
                                 createNewSequence={this.props.createNewSequence}
+                                // getData={this.props.getData}
+
                             />
                         </div>
                     </div>

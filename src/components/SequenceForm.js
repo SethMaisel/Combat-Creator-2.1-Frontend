@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 // import CreateCharacterForm from './CreateCharacterForm';
+import SequenceCard from '../containers/SequenceCard';
 
 class SequenceForm extends Component {
 
@@ -39,6 +40,7 @@ class SequenceForm extends Component {
 
 
     render() {
+        console.log('sequenceformweapons', this.props.weapons)
         console.log("sequenceState", this.props.fight)
         return (
             <div>
@@ -51,6 +53,7 @@ class SequenceForm extends Component {
                         value={this.state.weapon}
                     >
                         <option>Select Weapon</option>
+                        
                         {this.props.weapons.map(weapon => {
                             return <option value={weapon.id}>{weapon.name}</option>
                         })
@@ -105,7 +108,7 @@ class SequenceForm extends Component {
                         required
                     />
                 </form>
-                <SequenceForm
+                <SequenceCard
                     sequence={this.state, this.props.character_id, this.props.fight_id}
                     />
             </div>

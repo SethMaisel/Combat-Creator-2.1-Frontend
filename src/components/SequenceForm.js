@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-// import CreateCharacterForm from './CreateCharacterForm';
-import SequenceCard from '../containers/SequenceCard';
+// import SequenceCard from '../containers/SequenceCard';
 
 class SequenceForm extends Component {
 
@@ -24,25 +23,13 @@ class SequenceForm extends Component {
         this.props.createNewSequence({ fight_id, character_id, weapon_id, technique_id, movement_id, line_id })
     }
 
-    // return (
-    //     <div className="sequenceRender">
-    //         <SequenceCard/>
-    //         <p>{this.props.character}: {this.weapon}--{this.movement} with {this.technique} to {this.line} </p>
-
-    //     </div>
-    // )
-
-
-
-
     setValue = event => {
         this.setState({ [event.target.name]: event.target.value })
     }
 
 
     render() {
-        console.log('sequenceformweapons', this.props.weapons)
-        console.log("sequenceState", this.props.fight)
+        
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>

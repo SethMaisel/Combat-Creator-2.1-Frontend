@@ -18,8 +18,8 @@ class FightPage extends Component {
     techniques: [],
     lines: [],
     sequences: [],
-    selectedSequence: null 
-    
+    selectedSequence: null
+
   }
 
   componentDidMount() {
@@ -43,7 +43,7 @@ class FightPage extends Component {
     this.setState({ selectedFight: fight })
   }
 
-  
+
   backToFights = () => {
     this.setState({ selectedFight: null })
   }
@@ -99,19 +99,23 @@ class FightPage extends Component {
   }
 
   removeSequence = selectedSequence => {
-    console.log("selectedSequence", selectedSequence)
     const id = selectedSequence.id
-
-    const sequences = this.state.sequences.filter(sequence => {
-      return sequence !== selectedSequence
-    })
+    console.log("selectedSequence", selectedSequence.fight_id)
+    const fightSequenceGone = this.state.fights.find(fight => fight.id === selectedSequence.fight_id)
+    const updatedFight = fightSequenceGone.sequences.filter(sequence => sequence.id !== selectedSequence.id)
+    console.log("updatedFight", updatedFight)
+    const fights = this.state.fights.filter(fight => fight.id != updatedFight.id)
+    console.log("unchangedFights", unchangedFights)
     
-    this.setState({ sequences })
+
     fetch(`${base_url}sequences/${id}`, {
       method: "DELETE"
     })
       .then(handleResponse)
+      .then(this.setState({ fights }))
+      .then(this.setState({ fights: [...this.state.fights, updatedFight] }))
   }
+  
 
   createNewCharacter = name => {
 
@@ -129,21 +133,21 @@ class FightPage extends Component {
   createNewSequence = (newSequence) => {
     console.log("newSequence", newSequence)
     fetch(`${base_url}sequences`, {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newSequence)
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newSequence)
     }).then(handleResponse)
-    .then(sequence => {
-      const updatedFight = this.state.fights.find(fight => fight.id === sequence.fight.id)
-      updatedFight.sequences.push(sequence)
-      const unchangedFights = this.state.fights.filter(fight => fight.id !== updatedFight.id)
-      this.setState({fights: [...unchangedFights, updatedFight]})
-    })
+      .then(sequence => {
+        const updatedFight = this.state.fights.find(fight => fight.id === sequence.fight.id)
+        updatedFight.sequences.push(sequence)
+        const unchangedFights = this.state.fights.filter(fight => fight.id !== updatedFight.id)
+        this.setState({ fights: [...unchangedFights, updatedFight] })
+      })
   }
 
-  
+
 
   render() {
     return (
@@ -168,8 +172,7 @@ class FightPage extends Component {
           getCharacters={this.getCharacters}
           createNewCharacter={this.createNewCharacter}
           createNewSequence={this.createNewSequence}
-          // getData={this.getData}
-          
+
         />
 
         <AddFightForm

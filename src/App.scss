@@ -1,0 +1,84 @@
+@import './styling/reset';
+@import './styling/colors';
+@import './styling/scaling';
+@import './styling/typography';
+
+
+
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.fight-page{
+  background-color: $black;
+  opacity: 90%;
+  display: flex;
+  flex-flow: column wrap;
+  width: 100%;
+  font-family: 'Grenze', serif;
+  color: $white;
+  align-content: space-between;
+}
+
+.fight-page > img{
+  width: 100%;
+  height: auto;
+}
+
+.fight-page-heading{
+  font-size: 60pt;
+  align-self: center;
+}
+
+.audio{
+  background-color: $black;
+  align-self: center;
+  margin: 10rem;
+}
+
+.deleteButton {
+  padding: 3px 10px;
+  font-size: 12px;
+  border-radius: 30px;
+  border: 2px solid #e70d0d;
+}
+
+h1 {
+  font-size: 30pt;
+  font-family: 'Grenze', serif;
+}
+
+.fightName {
+  padding: 5px 5px;
+  font-size: 15px;
+  border-radius: 50px;
+  border: 5px solid #918d8d;
+}
+
+
+
+
+
+

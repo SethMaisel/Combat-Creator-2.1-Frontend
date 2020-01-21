@@ -22,7 +22,6 @@ class CreateCharacterForm extends Component {
     }
 
     checkForCharacter = () => {
-        // console.log("checkCharacterState", this.state.character)
         const character = this.props.characters.find(characterName => characterName.name.toLowerCase() === this.state.character_name.toLowerCase())
         if (character) {
             this.setState({ character })
@@ -63,8 +62,6 @@ class CreateCharacterForm extends Component {
                         </div>
                         <div className="showSequenceForm">
                             <SequenceForm
-                                // key={this.props.sequence.id}
-                                // sequence_id={this.props.sequence.id}
                                 character={this.state.character}
                                 fight={this.props.fight}
                                 weapons={this.props.weapons}
@@ -72,7 +69,6 @@ class CreateCharacterForm extends Component {
                                 techniques={this.props.techniques}
                                 lines={this.props.lines}
                                 createNewSequence={this.props.createNewSequence}
-                                // getData={this.props.getData}
 
                             />
                         </div>

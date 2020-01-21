@@ -1,10 +1,10 @@
 import React from "react";
-import SequenceForm from "../components/SequenceForm"
-import CreateCharacterForm from "../components/CreateCharacterForm"
+// import SequenceForm from "../components/SequenceForm"
+// import CreateCharacterForm from "../components/CreateCharacterForm"
 
 
 const SequenceCard = (props) => {
-    const { character, weapon, movement, selectedSequence,
+    const { character, weapon, movement,
         technique, line, sequence, removeSequence,
     } = props
 

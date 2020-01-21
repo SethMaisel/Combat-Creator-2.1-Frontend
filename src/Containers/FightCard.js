@@ -8,7 +8,7 @@ const FightCard = (props) => {
         backToFights, characters, getCharacters,
         weapons, movements, techniques, lines,
         removeFight, createNewCharacter, selectedSequence,
-        createNewSequence, removeSequence, getData,
+        createNewSequence, removeSequence, 
     } = props
 
 
@@ -49,9 +49,9 @@ const FightCard = (props) => {
                 selectFight(fight)}>
                 {fight.name}
                 <button
-                    onClick={() => removeFight(fight)}
+                    className="deleteButton" onClick={() => removeFight(fight)}
                 >
-                    Delete
+                    Delete Fight
                 </button>
             </div>
             {selectedFight && fight.id === selectedFight.id &&
@@ -68,7 +68,6 @@ const FightCard = (props) => {
                         lines={lines}
                         createNewCharacter={createNewCharacter}
                         createNewSequence={createNewSequence}
-                        // getData={getData}
 
                     />
 

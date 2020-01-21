@@ -49,9 +49,9 @@ const FightCard = (props) => {
                 selectFight(fight)}>
                 {fight.name}
                 <button
-                    onClick={() => removeFight(fight)}
+                    className="deleteButton" onClick={() => removeFight(fight)}
                 >
-                    Delete
+                    Delete Fight
                 </button>
             </div>
             {selectedFight && fight.id === selectedFight.id &&

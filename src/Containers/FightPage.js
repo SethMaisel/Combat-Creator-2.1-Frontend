@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import FightCollection from "./FightCollection";
 import AddFightForm from "../components/AddFightForm"
-import '../styling/FightPage.css'
+// import '../styling/FightPage.scss'
 
 const base_url = 'http://localhost:3000/'
 const handleResponse = (response => response.json())
@@ -52,8 +52,7 @@ class FightPage extends Component {
     return (
       <header className="fight-page" >
         <h1 className="fight-page-heading">Combat Creator</h1>
-        <h2>Version 2</h2>
-        <h3>...point one</h3>
+        
         <img
           src='https://www.fortezafitness.com/wp/wp-content/uploads/2012/06/alfieri37.jpg' alt='Combat Creator: A Fight Choreography Resource'
 
@@ -100,22 +99,26 @@ class FightPage extends Component {
 
   removeSequence = selectedSequence => {
     const id = selectedSequence.id
-    console.log("selectedSequence", selectedSequence.fight_id)
-    const fightSequenceGone = this.state.fights.find(fight => fight.id === selectedSequence.fight_id)
-    const updatedFight = fightSequenceGone.sequences.filter(sequence => sequence.id !== selectedSequence.id)
-    console.log("updatedFight", updatedFight)
-    const fights = this.state.fights.filter(fight => fight.id != updatedFight.id)
-    console.log("unchangedFights", unchangedFights)
-    
+    // console.log("selectedSequence", selectedSequence.fight_id)
+    const selectedFight = this.state.fights.find(fight => fight.id === selectedSequence.fight_id)
+    // console.log('selectedFight', selectedFight.sequences)
+    const remainingSequences = selectedFight.sequences.filter(sequence => sequence.id !== selectedSequence.id)
+    // console.log("remainingSequences", remainingSequences)
+    selectedFight.sequences = remainingSequences
+    const unchangedFights = this.state.fights.filter(fight => {
+      return fight.id !== selectedFight.fight_id
+      })
+    // console.log("fights", newFights)
+
 
     fetch(`${base_url}sequences/${id}`, {
       method: "DELETE"
     })
       .then(handleResponse)
-      .then(this.setState({ fights }))
-      .then(this.setState({ fights: [...this.state.fights, updatedFight] }))
+      // .then(this.setState({ fights }))
+      .then(this.setState({ fights: [...unchangedFights, selectedFight] }))
   }
-  
+
 
   createNewCharacter = name => {
 

@@ -45,60 +45,119 @@ table {
 .App {
   text-align: center; }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none; }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white; }
-
 .App-link {
   color: #61dafb; }
 
-.fight-page {
-  background-color: #080708;
+.App {
+  border: 5px solid #77161D;
+  background: url("https://image.shutterstock.com/image-illustration/metal-sword-on-dark-background-260nw-691870393.jpg") no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100%;
+  width: 97%;
   opacity: 90%;
   display: flex;
   flex-flow: column wrap;
-  width: 100%;
-  font-family: 'Grenze', serif;
-  color: #E6E8E6;
-  align-content: space-between; }
+  font-family: 'Grenze', serif; }
 
-.fight-page > img {
-  width: 100%;
-  height: auto; }
-
-.fight-page-heading {
+.header {
+  padding: 5px 5px;
   font-size: 60pt;
-  align-self: center; }
+  color: #aaa4a4;
+  border-radius: 40px; }
 
-.audio {
-  background-color: #080708;
-  align-self: center;
-  margin: 10rem; }
+.fightCollection {
+  align-content: space-evenly;
+  padding: 5px 5px;
+  font-size: 20pt;
+  color: #aaa4a4;
+  border-radius: 4px; }
 
 .deleteButton {
   padding: 3px 10px;
-  font-size: 12px;
+  font-size: 10px;
+  background-color: #aaa4a4;
   border-radius: 30px;
   border: 2px solid #e70d0d; }
 
-h1 {
+.deleteButton:hover {
+  background-color: #e70d0d; }
+
+.deleteSequenceButton {
+  justify-content: flex-end;
+  padding: 3px 10px;
+  font-size: 10px;
+  background-color: #aaa4a4;
+  border-radius: 30px;
+  border: 2px solid #e70d0d; }
+
+.deleteSequenceButton:hover {
+  background-color: #e70d0d; }
+
+h2 {
   font-size: 30pt;
+  color: #aaa4a4;
   font-family: 'Grenze', serif; }
 
-.fightName {
-  padding: 5px 5px;
-  font-size: 15px;
-  border-radius: 50px;
-  border: 5px solid #918d8d; }
+.fightButton:hover {
+  border-radius: 30px;
+  border: 2px solid #527cee;
+  box-shadow: 0 8px 16px 0 #282c34; }
+
+.createFightForm {
+  font-size: 20px;
+  color: #aaa4a4;
+  font-family: 'Grenze', serif; }
+
+input[type=text] {
+  border: 2px solid #527cee;
+  border-radius: 4px;
+  font-size: 12px;
+  background-color: #aaa4a4;
+  border-radius: 30px;
+  padding: 3px 10px; }
+
+input[type=text]:focus {
+  background-color: lightblue; }
+
+input[type=submit] {
+  border: 2px solid #527cee;
+  font-size: 12px;
+  background-color: #aaa4a4;
+  border-radius: 30px;
+  padding: 3px 10px; }
+
+input[type=submit]:hover {
+  background-color: #527cee; }
+
+.goBackButton {
+  padding: 3px 10px;
+  font-size: 12px;
+  background-color: #aaa4a4;
+  border-radius: 30px;
+  border: 2px solid #7557e4; }
+
+.goBackButton:hover {
+  background-color: #7557e4; }
+
+.fightButton {
+  align-content: space-between;
+  padding: 3px 30px;
+  color: #aaa4a4;
+  font-size: 25px;
+  font-family: 'Grenze', serif;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 30px;
+  border: 2px solid rgba(170, 164, 164, 0.6); }
+
+.sequenceContent {
+  box-shadow: 0 8px 16px 0 #E6E8E6;
+  transition: 0.3s;
+  align-content: space-between 50px;
+  padding: 3px 10px;
+  color: #aaa4a4;
+  font-size: 20px;
+  font-family: sans-serif;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 30px; }
 
 /*# sourceMappingURL=App.css.map */

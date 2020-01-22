@@ -48,27 +48,6 @@ class FightPage extends Component {
     this.setState({ selectedFight: null })
   }
 
-  createHeader = () => {
-    return (
-      <header className="fight-page" >
-        <h1 className="fight-page-heading">Combat Creator</h1>
-        
-        <img
-          src='https://www.fortezafitness.com/wp/wp-content/uploads/2012/06/alfieri37.jpg' alt='Combat Creator: A Fight Choreography Resource'
-
-        />
-        <audio
-
-          className='audio'
-          ref='audio_tag'
-          crossOrigin src='http://cs.slimi.lt/cstrike/sound/yellow/deploy1.wav'
-          controls autoPlay
-          style={{ display: "none" }}
-        />
-      </header>
-    )
-  }
-
 
   createNewFight = name => {
 
@@ -107,7 +86,7 @@ class FightPage extends Component {
     selectedFight.sequences = remainingSequences
     const unchangedFights = this.state.fights.filter(fight => {
       return fight.id !== selectedFight.fight_id
-      })
+    })
     // console.log("fights", newFights)
 
 
@@ -156,31 +135,34 @@ class FightPage extends Component {
     return (
 
       <div>
-        {this.createHeader()}
-        <h1>Your Fights</h1>
-        <FightCollection
-          fights={this.state.fights}
-          characters={this.state.characters}
-          weapons={this.state.weapons}
-          movements={this.state.movements}
-          techniques={this.state.techniques}
-          lines={this.state.lines}
-          sequences={this.state.sequences}
-          selectedSequence={this.state.selectedSequence}
-          removeSequence={this.removeSequence}
-          selectFight={this.selectFight}
-          selectedFight={this.state.selectedFight}
-          removeFight={this.removeFight}
-          backToFights={this.backToFights}
-          getCharacters={this.getCharacters}
-          createNewCharacter={this.createNewCharacter}
-          createNewSequence={this.createNewSequence}
+        <div className="createFightForm">
+          <AddFightForm
+            createNewFight={this.createNewFight}
+          />
+        </div>
+        <h2>Your Fights</h2>
+        <div className="fightCollection">
+          <FightCollection
+            fights={this.state.fights}
+            characters={this.state.characters}
+            weapons={this.state.weapons}
+            movements={this.state.movements}
+            techniques={this.state.techniques}
+            lines={this.state.lines}
+            sequences={this.state.sequences}
+            selectedSequence={this.state.selectedSequence}
+            removeSequence={this.removeSequence}
+            selectFight={this.selectFight}
+            selectedFight={this.state.selectedFight}
+            removeFight={this.removeFight}
+            backToFights={this.backToFights}
+            getCharacters={this.getCharacters}
+            createNewCharacter={this.createNewCharacter}
+            createNewSequence={this.createNewSequence}
+          />
+        </div>
 
-        />
 
-        <AddFightForm
-          createNewFight={this.createNewFight}
-        />
       </div>
     );
   }

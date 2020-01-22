@@ -146,8 +146,8 @@ input[type=submit]:hover {
   font-size: 25px;
   font-family: 'Grenze', serif;
   background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 30px;
-  border: 2px solid rgba(170, 164, 164, 0.6); }
+  border: none;
+  cursor: pointer; }
 
 .sequenceContent {
   box-shadow: 0 8px 16px 0 #E6E8E6;
@@ -158,6 +158,21 @@ input[type=submit]:hover {
   font-size: 20px;
   font-family: sans-serif;
   background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 30px; }
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-evenly; }
+  .sequenceContent p {
+    padding-right: 10px; }
+
+.fightButtonDiv {
+  align-content: space-between;
+  padding: 3px 30px;
+  color: #aaa4a4;
+  font-size: 25px;
+  font-family: 'Grenze', serif;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 30px;
+  border: 2px solid rgba(170, 164, 164, 0.6);
+  cursor: pointer; }
 
 /*# sourceMappingURL=App.css.map */

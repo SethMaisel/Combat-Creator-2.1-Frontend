@@ -149,8 +149,10 @@ input[type=submit]:hover {
   font-size: 25px;
   font-family: 'Grenze', serif;
   background-color:rgba(0, 0, 0, 0.6);
-  border-radius: 30px;
-  border: 2px solid rgba(170, 164, 164, 0.6);
+  // border-radius: 30px;
+  // border: 2px solid rgba(170, 164, 164, 0.6);
+  border: none;
+  cursor: pointer;
 }
 
 .sequenceContent {
@@ -163,9 +165,26 @@ input[type=submit]:hover {
   font-family: sans-serif;
   background-color:rgba(0, 0, 0, 0.6);
   border-radius: 30px;
+  display: flex;
+  justify-content: space-evenly;
   // border: 2px solid rgb(170, 164, 164);
+
+  p {
+    padding-right: 10px;
+  }
 }
 
+.fightButtonDiv {
+  align-content: space-between;
+  padding: 3px 30px;
+  color: rgba(170, 164, 164, 1.0);
+  font-size: 25px;
+  font-family: 'Grenze', serif;
+  background-color:rgba(0, 0, 0, 0.6);
+  border-radius: 30px;
+  border: 2px solid rgba(170, 164, 164, 0.6);
+  cursor: pointer;
+}
 
 
 

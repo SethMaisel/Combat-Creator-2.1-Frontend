@@ -17,7 +17,13 @@ class SequenceForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        const character_id = this.props.character.id
+        let character_id 
+        this.props.character.character
+            ? character_id=this.props.character.character.id
+            : character_id=this.props.character.id
+
+
+        // const character_id = this.props.character.character.id
         const fight_id = this.props.fight.id
         const { weapon_id, technique_id, movement_id, line_id } = this.state
         this.props.createNewSequence({ fight_id, character_id, weapon_id, technique_id, movement_id, line_id })

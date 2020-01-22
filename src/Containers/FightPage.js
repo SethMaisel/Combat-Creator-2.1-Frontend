@@ -100,6 +100,8 @@ class FightPage extends Component {
 
 
   createNewCharacter = name => {
+    console.log("createNewCharacterName", name)
+    
 
     fetch(`${base_url}characters`, {
       method: 'POST',
@@ -122,6 +124,7 @@ class FightPage extends Component {
       body: JSON.stringify(newSequence)
     }).then(handleResponse)
       .then(sequence => {
+        console.log("createSequenceSequence", sequence)
         const updatedFight = this.state.fights.find(fight => fight.id === sequence.fight.id)
         updatedFight.sequences.push(sequence)
         const unchangedFights = this.state.fights.filter(fight => fight.id !== updatedFight.id)
@@ -159,6 +162,7 @@ class FightPage extends Component {
             getCharacters={this.getCharacters}
             createNewCharacter={this.createNewCharacter}
             createNewSequence={this.createNewSequence}
+            character={this.state.character}
           />
         </div>
 

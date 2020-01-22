@@ -22,18 +22,20 @@ class CreateCharacterForm extends Component {
     }
 
     checkForCharacter = () => {
-        const character = this.props.characters.find(characterName => characterName.name.toLowerCase() === this.state.character_name.toLowerCase())
+        const character = this.props.fight.sequences.find(sequence => sequence.character.name.toLowerCase() === this.state.character_name.toLowerCase())
         if (character) {
             this.setState({ character })
         }
         else {
             this.props.createNewCharacter(this.state.character_name)
-
-
         }
     }
 
     render() {
+        let sequenceCharacter
+        this.state.character 
+            ? sequenceCharacter=this.state.character
+            : sequenceCharacter=this.props.character
 
         return (
             <div className="characterForm" >
@@ -54,15 +56,15 @@ class CreateCharacterForm extends Component {
                         required
                     />
                 </form>
-                {this.state.character &&
+                {(this.state.character || this.props.character) && 
                     <div>
                         <div className="characterName" onClick={() =>
                             this.checkForCharacter(this.state.character)}>
-                                {this.state.character.name}:
+                                {this.state.character_name}:
                         </div>
                         <div className="showSequenceForm">
                             <SequenceForm
-                                character={this.state.character}
+                                character={sequenceCharacter}
                                 fight={this.props.fight}
                                 weapons={this.props.weapons}
                                 movements={this.props.movements}

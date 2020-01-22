@@ -8,10 +8,23 @@ const FightCollection = (props) => {
         characters, getCharacters, weapons, movements,
         techniques, lines, removeFight, removeSequence,
         createNewCharacter, createNewSequence, sequences, 
-        selectedSequence,
+        selectedSequence, character
     } = props
 
-    const fightData = fights.map(fight => {
+    const sortByName = (a, b) => {
+        if (a.name > b.name){
+            return 1
+        }
+        else if (a.name < b.name){
+            return -1
+        }
+        else {
+            return 0
+        }
+
+    }
+
+    const fightData = fights.sort(sortByName).map(fight => {
         return <FightCard
             key={fight.id}
             fight={fight}
@@ -30,6 +43,7 @@ const FightCollection = (props) => {
             getCharacters={getCharacters}
             createNewCharacter={createNewCharacter}
             createNewSequence={createNewSequence}
+            character={character}
 
         />
     })

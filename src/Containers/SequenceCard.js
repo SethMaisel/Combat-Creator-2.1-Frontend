@@ -11,24 +11,24 @@ const SequenceCard = (props) => {
     return (
         <div className="sequenceCard">
             {sequence ?
-        <>
-                <div className="content">
-                    <p>{character}: {weapon}--{movement} with {technique} to {line} </p>
+                <>
+                    <div className="sequenceContent">
+                        <p>{character}: {weapon}--{movement} with {technique} to {line} </p>
 
-                </div>
-                
+                        <div className="removeSequence" >
 
-            <div className="removeSequence" >
-                
-                <button
-                    onClick={() => removeSequence(sequence)}
-                >
-                    Delete Sequence
-                </button>
-                
-            </div>
-            </>
-            : null}
+                            <button className="deleteSequenceButton"
+                                onClick={() => removeSequence(sequence)}
+                            >
+                                Delete Sequence
+                            </button>
+
+                        </div>
+                    </div>
+
+
+                </>
+                : null}
 
 
         </div>

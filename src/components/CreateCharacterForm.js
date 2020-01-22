@@ -50,7 +50,7 @@ class CreateCharacterForm extends Component {
                     />
                     <input
                         type='submit'
-                        placeholder='Create Character'
+                        value='Add Character'
                         required
                     />
                 </form>

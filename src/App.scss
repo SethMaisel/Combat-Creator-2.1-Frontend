@@ -33,11 +33,11 @@
 // }
 .App {
   
-  border: 5px solid $primary-red-6;
+  border: 5px solid rgb(170, 164, 164);
   background: url("https://image.shutterstock.com/image-illustration/metal-sword-on-dark-background-260nw-691870393.jpg") no-repeat center center fixed;
   background-size: cover;
   min-height: 100%;
-  width: 97%;
+  width: 99%;
   opacity: 90%;
   display: flex;
   flex-flow: column wrap;
@@ -48,7 +48,7 @@
   
   padding: 5px 5px;
   font-size: 60pt;
-  color: rgb(170, 164, 164);
+  color: rgba(170, 164, 164, 1);
   border-radius: 40px;
 }
 
@@ -56,7 +56,7 @@
   align-content: space-evenly;
   padding: 5px 5px;
   font-size: 20pt;
-  color: rgb(170, 164, 164);
+  color: rgba(170, 164, 164, 0.7);
   border-radius: 4px;
 }
 
@@ -101,8 +101,8 @@ h2 {
 }
 
 .createFightForm {
-  font-size: 20px;
-  color: rgb(170, 164, 164);
+  font-size: 30px;
+  color: rgba(170, 164, 164, 1);
   font-family: 'Grenze', serif;
 }
 

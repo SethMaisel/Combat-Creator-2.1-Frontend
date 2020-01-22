@@ -49,11 +49,11 @@ table {
   color: #61dafb; }
 
 .App {
-  border: 5px solid #77161D;
+  border: 5px solid #aaa4a4;
   background: url("https://image.shutterstock.com/image-illustration/metal-sword-on-dark-background-260nw-691870393.jpg") no-repeat center center fixed;
   background-size: cover;
   min-height: 100%;
-  width: 97%;
+  width: 99%;
   opacity: 90%;
   display: flex;
   flex-flow: column wrap;
@@ -69,7 +69,7 @@ table {
   align-content: space-evenly;
   padding: 5px 5px;
   font-size: 20pt;
-  color: #aaa4a4;
+  color: rgba(170, 164, 164, 0.7);
   border-radius: 4px; }
 
 .deleteButton {
@@ -104,7 +104,7 @@ h2 {
   box-shadow: 0 8px 16px 0 #282c34; }
 
 .createFightForm {
-  font-size: 20px;
+  font-size: 30px;
   color: #aaa4a4;
   font-family: 'Grenze', serif; }
 

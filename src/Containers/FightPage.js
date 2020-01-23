@@ -39,6 +39,10 @@ class FightPage extends Component {
       .then(data => this.setState({ [path]: data }))
   }
 
+  logout = () => {
+    this.props.logout()
+  }
+
   selectFight = (fight) => {
     this.setState({ selectedFight: fight })
   }
@@ -56,7 +60,7 @@ class FightPage extends Component {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ "name": name })
+      body: JSON.stringify({ "name": name, "user_id": 3 })
     }).then(handleResponse)
       .then(fight => this.setState({ fights: [...this.state.fights, fight] }))
   }
@@ -100,8 +104,6 @@ class FightPage extends Component {
 
 
   createNewCharacter = name => {
-    console.log("createNewCharacterName", name)
-    
 
     fetch(`${base_url}characters`, {
       method: 'POST',
@@ -138,6 +140,8 @@ class FightPage extends Component {
     return (
 
       <div>
+        <a href="https://www.safd.org/media/1845/safd-glossary-of-terms-3-19-16.pdf">Glossary of Fight Terms</a>
+
         <div className="createFightForm">
           <AddFightForm
             createNewFight={this.createNewFight}
@@ -165,6 +169,9 @@ class FightPage extends Component {
             character={this.state.character}
           />
         </div>
+        <form onSubmit={this.props.logout}>
+          <input type="submit" value="Logout" />
+        </form>
 
 
       </div>

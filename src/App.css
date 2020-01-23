@@ -52,8 +52,8 @@ table {
   border: 5px solid #aaa4a4;
   background: url("https://image.shutterstock.com/image-illustration/metal-sword-on-dark-background-260nw-691870393.jpg") no-repeat center center fixed;
   background-size: cover;
-  min-height: 100%;
-  width: 99%;
+  min-height: 100vh;
+  width: 100%;
   opacity: 90%;
   display: flex;
   flex-flow: column wrap;

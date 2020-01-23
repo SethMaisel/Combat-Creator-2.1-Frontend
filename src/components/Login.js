@@ -17,9 +17,7 @@ export default class Login extends Component {
                     <input type="password" name="password" placeholder="Password" />
                     <input type="submit" value="Login" />
                 </form>
-                <form onSubmit={this.props.logout}>
-                    <input type="submit" value="Logout" />
-                </form>
+                
             </div>
         )
     }

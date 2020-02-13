@@ -20,6 +20,9 @@ Fights and sequences can be deleted at any time.
 Future functionality:
 
 Update individual sequences so that deletion isn't necessary to change the fight.
+
 More action, technique, and line options.
+
 Create your own weapons, actions, techniques, and lines (I can't think of everything the playwrights create!).
+
 Animate your fight sequences and see your combat play out!

@@ -3,7 +3,7 @@ import FightCollection from "./FightCollection";
 import AddFightForm from "../components/AddFightForm"
 // import '../styling/FightPage.scss'
 
-const base_url = 'http://localhost:3000/'
+const base_url = 'https://combat-creator-backend.herokuapp.com/'
 const handleResponse = (response => response.json())
 
 class FightPage extends Component {
